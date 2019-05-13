@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7403086830373586278}
   - component: {fileID: 7403086830373586276}
   - component: {fileID: 7403086830373586277}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Ring_Small
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4821,7 +4821,7 @@ GameObject:
   - component: {fileID: 7403086830459156642}
   - component: {fileID: 7403086830459156640}
   - component: {fileID: 7403086830459156641}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Hit_Debris
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9631,7 +9631,7 @@ GameObject:
   - component: {fileID: 7403086830876697190}
   - component: {fileID: 7403086830876697191}
   - component: {fileID: 7403086830876697184}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Particle_Projectile_Hit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9670,7 +9670,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 0
   useRigidbodyForVelocity: 1

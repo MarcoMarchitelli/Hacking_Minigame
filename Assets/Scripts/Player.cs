@@ -22,6 +22,7 @@ public class Player : LivingEntity
     public GameObject ship_Side_R;
     public ParticleSystem particle_Ship_Movement;
     public ParticleSystem particle_Ship_Damage;
+    public ParticleSystem particle_Ship_Death;
 
     [Header("DEBUG MODE")]
     public bool DEBUG_MODE = false;
@@ -174,6 +175,8 @@ public class Player : LivingEntity
     /// </summary>
     public override void Die()
     {
+        Instantiate(particle_Ship_Death.gameObject, transform.position, Quaternion.identity);
+
         Destroy(gameObject);
 
         //death event subscriptions

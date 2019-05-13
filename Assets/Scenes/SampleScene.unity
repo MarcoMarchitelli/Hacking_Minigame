@@ -1330,5 +1330,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7889239419653162580, guid: 051a8b38f68a2e14d9aec47f1a97a751,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7889239421499042858, guid: 051a8b38f68a2e14d9aec47f1a97a751,
+        type: 3}
+      propertyPath: particle_Ship_Death
+      value: 
+      objectReference: {fileID: 3368630239824662515, guid: 6f532455f54ec7b418761501782c10fd,
+        type: 3}
+    - target: {fileID: 7889239420099135175, guid: 051a8b38f68a2e14d9aec47f1a97a751,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7889239420223065817, guid: 051a8b38f68a2e14d9aec47f1a97a751,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7889239420365849445, guid: 051a8b38f68a2e14d9aec47f1a97a751,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7889239420829624244, guid: 051a8b38f68a2e14d9aec47f1a97a751,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7889239421492632683, guid: 051a8b38f68a2e14d9aec47f1a97a751,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 051a8b38f68a2e14d9aec47f1a97a751, type: 3}
