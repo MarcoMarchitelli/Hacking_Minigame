@@ -2,7 +2,6 @@
 using DG.Tweening;
 
 [RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(Renderer))]
 public class Enemy : LivingEntity
 {
     #region Inspector Vars
@@ -10,6 +9,9 @@ public class Enemy : LivingEntity
     public LayerMask damageMask;
     public float damage;
     public Gun[] equippedGuns;
+
+    [Header("References")]
+    public Renderer materialRenderer;
 
     #endregion
 
@@ -29,8 +31,11 @@ public class Enemy : LivingEntity
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        mat = GetComponent<Renderer>().material;
-        startingColor = mat.color;
+        if (materialRenderer)
+        {
+            mat = materialRenderer.material;
+            startingColor = mat.color;
+        }
     }
 
     protected override void Start()
@@ -88,9 +93,12 @@ public class Enemy : LivingEntity
     void Damage()
     {
         //material flash sequence
-        Sequence materialFlash = DOTween.Sequence();
-        materialFlash.Append(mat.DOColor(Color.white, "_EmissionColor", FLASH_INTERPOLATION_DURATION));
-        materialFlash.AppendInterval(FLASH_WAIT_DURATION);
-        materialFlash.Append(mat.DOColor(startingColor, "_EmissionColor", FLASH_INTERPOLATION_DURATION));
+        if (mat != null)
+        {
+            Sequence materialFlash = DOTween.Sequence();
+            materialFlash.Append(mat.DOColor(Color.white, "_EmissionColor", FLASH_INTERPOLATION_DURATION));
+            materialFlash.AppendInterval(FLASH_WAIT_DURATION);
+            materialFlash.Append(mat.DOColor(startingColor, "_EmissionColor", FLASH_INTERPOLATION_DURATION));
+        }
     }
 }

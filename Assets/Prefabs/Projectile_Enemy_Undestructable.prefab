@@ -16,8 +16,8 @@ GameObject:
   - component: {fileID: 3826010506809374875}
   - component: {fileID: 3687463773318024219}
   - component: {fileID: 2879068483029188007}
-  m_Layer: 11
-  m_Name: Projectile_Enemy_Destructable
+  m_Layer: 14
+  m_Name: Projectile_Enemy_Undestructable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 77eb3faeef266d546b41213d14d05d7e, type: 2}
+  - {fileID: 2100000, guid: 2610deb4b63b0d4469a1033e7c293538, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -99,7 +99,7 @@ MonoBehaviour:
     m_Bits: 1024
   destructionMask:
     serializedVersion: 2
-    m_Bits: 37888
+    m_Bits: 5120
   damage: 1
   particle_Enemy_Hit: {fileID: 0}
   moveSpeed: 0

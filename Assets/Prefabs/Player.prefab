@@ -169,13 +169,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 3
-  moveSpeed: 45
-  turnSpeed: 720
+  moveSpeed: 55
+  turnSpeed: 1080
   startingGun: {fileID: 7655976935386851871}
   ship_Side_L: {fileID: 1498868895218623102}
   ship_Side_R: {fileID: 4025553792650455656}
   particle_Ship_Movement: {fileID: 7889239420483726866}
   particle_Ship_Damage: {fileID: 7889239419653162577}
+  particle_Ship_Death: {fileID: 3368630239824662515, guid: 6f532455f54ec7b418761501782c10fd,
+    type: 3}
   DEBUG_MODE: 0
 --- !u!114 &7889239421499042859
 MonoBehaviour:
@@ -360,6 +362,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Particle_Ship_Damage
       objectReference: {fileID: 0}
+    - target: {fileID: 8569827923831982490, guid: b0bd5273677c9964eae672fbd48fdf23,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 8569827923831982493, guid: b0bd5273677c9964eae672fbd48fdf23,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -414,6 +421,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8569827924219365641, guid: b0bd5273677c9964eae672fbd48fdf23,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8569827924334772503, guid: b0bd5273677c9964eae672fbd48fdf23,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8569827924478217387, guid: b0bd5273677c9964eae672fbd48fdf23,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8569827925084072058, guid: b0bd5273677c9964eae672fbd48fdf23,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8569827925745374117, guid: b0bd5273677c9964eae672fbd48fdf23,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 8569827924478217388, guid: b0bd5273677c9964eae672fbd48fdf23,
         type: 3}

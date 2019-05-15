@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6541832284002329086}
   - component: {fileID: 1034790026}
   - component: {fileID: 8829030865738513917}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Projectile_Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageMask:
     serializedVersion: 2
-    m_Bits: 2560
+    m_Bits: 512
   destructionMask:
     serializedVersion: 2
     m_Bits: 6656
