@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class RewindManager : MonoBehaviour
 {
-    public List<Rewinder> rewinders = new List<Rewinder>();
+    List<Rewinder> rewinders = new List<Rewinder>();
 
     public System.Action OnRewindStart, OnRewindEnd;
 
@@ -13,7 +13,7 @@ public class RewindManager : MonoBehaviour
     const float REWIND_COOLDOWN = 10f;
 
     bool countTime = false;
-    float timer = 0;
+    [HideInInspector] public float timer = 0;
 
     private void Awake()
     {
@@ -23,9 +23,9 @@ public class RewindManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetButtonDown("Rewind"))
             StartRewind();
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetButtonUp("Rewind"))
             StopRewind();
 
         if (countTime)

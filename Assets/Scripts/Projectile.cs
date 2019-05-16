@@ -5,35 +5,42 @@ public class Projectile : MonoBehaviour, IDestructable
     public LayerMask damageMask;
     public LayerMask destructionMask;
     public float damage = 1;
+    public float lifeTime = 3f;
 
     [Header("Graphics References")]
     public ParticleSystem particle_Enemy_Hit;
-    //public Rewinder rewinder;
+    public Rewinder rewinder;
 
     [HideInInspector] public float moveSpeed;
 
-    const float LIFE_TIME = 3f;
-
+    float timer = 0;
     bool canMove = true;
-
-    //private void Awake()
-    //{
-    //    RewindManager.Instance.OnRewindStart += StopMove;
-    //    RewindManager.Instance.OnRewindEnd += StartMove;
-    //    if (rewinder)
-    //        rewinder.spawnPoint = transform.position;
-    //}
+    bool countTime = false;
 
     private void Start()
     {
-        Die(LIFE_TIME);
+        RewindManager.Instance.OnRewindStart += StopMove;
+        RewindManager.Instance.OnRewindEnd += StartMove;
+
+        timer = 0;
+        countTime = true;
     }
 
     void Update()
     {
-        //if (canMove)
+        if (canMove)
+            transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
 
-        transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+        if (countTime)
+        {
+            if(canMove)
+                timer += Time.deltaTime;
+            else
+                timer -= Time.deltaTime;
+
+            if (timer >= lifeTime || timer <= 0)
+                Die();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -43,22 +50,20 @@ public class Projectile : MonoBehaviour, IDestructable
             IDamageable d = other.GetComponentInParent<IDamageable>();
 
             if (d != null)
-            {
                 d.TakeDamage(damage);
-                if (particle_Enemy_Hit)
-                    Instantiate(particle_Enemy_Hit.gameObject, transform.position, Quaternion.identity);
-            }
+
         }
-        
+
         if (destructionMask == (destructionMask | (1 << other.gameObject.layer)))
         {
+            if (particle_Enemy_Hit)
+            {
+                if (other.gameObject.layer == 9 || other.gameObject.layer == 11)
+                    Instantiate(particle_Enemy_Hit.gameObject, transform.position, Quaternion.identity);
+            }
+
             Die();
         }
-    }
-
-    void Die(float _delay)
-    {
-        Destroy(gameObject, _delay);
     }
 
     public void Die()
@@ -66,13 +71,13 @@ public class Projectile : MonoBehaviour, IDestructable
         Destroy(gameObject);
     }
 
-    //void StartMove()
-    //{
-    //    canMove = true;
-    //}
+    void StartMove()
+    {
+        canMove = true;
+    }
 
-    //void StopMove()
-    //{
-    //    canMove = false;
-    //}
+    void StopMove()
+    {
+        canMove = false;
+    }
 }

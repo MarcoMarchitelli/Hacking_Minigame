@@ -46,7 +46,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 6541832284002329086, guid: c6d71b47644aa1c41bee378567c06c1a,
     type: 3}
   shootPoint: {fileID: 233265014510125696}
-  timeBetweenEachShot: 0.25
+  timeBetweenEachShot: 0.2
   projectileSpeed: 25
   projectileRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &415106409834771897
@@ -95,7 +95,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 6541832284002329086, guid: 4a29fd7070884684faafba502fa4dc7d,
     type: 3}
   shootPoint: {fileID: 3045637942958012658}
-  timeBetweenEachShot: 0.25
+  timeBetweenEachShot: 0.2
   projectileSpeed: 25
   projectileRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &2345532405567284938
@@ -144,7 +144,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 6541832284002329086, guid: c6d71b47644aa1c41bee378567c06c1a,
     type: 3}
   shootPoint: {fileID: 3768864908505963615}
-  timeBetweenEachShot: 0.25
+  timeBetweenEachShot: 0.2
   projectileSpeed: 25
   projectileRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &3082637348752318445
@@ -193,7 +193,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 6541832284002329086, guid: 4a29fd7070884684faafba502fa4dc7d,
     type: 3}
   shootPoint: {fileID: 729717468527927062}
-  timeBetweenEachShot: 0.25
+  timeBetweenEachShot: 0.2
   projectileSpeed: 25
   projectileRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &6699463083298585163

@@ -45,6 +45,10 @@ public class Player : LivingEntity
     const float FLASH_WAIT_DURATION = .3f;
     const float INVULNERABILITY_DURATION = .7f;
 
+    const float CAMERA_SHAKE_DURATION = .3f;
+    const float CAMERA_SHAKE_FREQUENCY = 15f;
+    const float CAMERA_SHAKE_AMPLITUDE = .5f;
+
     #endregion
 
     #region Monos
@@ -141,6 +145,8 @@ public class Player : LivingEntity
     /// </summary>
     void DamageEffects()
     {
+        CameraShake.Instance.Shake(CAMERA_SHAKE_AMPLITUDE, CAMERA_SHAKE_FREQUENCY, CAMERA_SHAKE_DURATION);
+
         particle_Ship_Damage.Play(true);
 
         //material flash sequence creation

@@ -20,6 +20,10 @@ public class Enemy : LivingEntity
     const float FLASH_INTERPOLATION_DURATION = .05f;
     const float FLASH_WAIT_DURATION = .05f;
 
+    const float CAMERA_SHAKE_DURATION = .1f;
+    const float CAMERA_SHAKE_FREQUENCY = 15f;
+    const float CAMERA_SHAKE_AMPLITUDE = .3f;
+
     #endregion
 
     Rigidbody rb;
@@ -30,6 +34,13 @@ public class Enemy : LivingEntity
 
     private void Awake()
     {
+        EnemiesCounter e = FindObjectOfType<EnemiesCounter>();
+        if (e)
+        {
+            e.AddCount();
+            OnDeath += e.RemoveCount;
+        }
+
         rb = GetComponent<Rigidbody>();
         if (materialRenderer)
         {
@@ -81,6 +92,8 @@ public class Enemy : LivingEntity
 
     public override void Die()
     {
+        CameraShake.Instance.Shake(CAMERA_SHAKE_AMPLITUDE, CAMERA_SHAKE_FREQUENCY, CAMERA_SHAKE_DURATION);
+
         Destroy(gameObject);
 
         //death event subscriptions

@@ -6,9 +6,8 @@ public class Rewinder : MonoBehaviour
     List<PointInTime> registeredPoints;
 
     bool isRewinding = false;
-    [HideInInspector] public Vector3 spawnPoint;
 
-    private void Awake()
+    private void Start()
     {
         RewindManager.Instance.AddRewinder(this);
         RewindManager.Instance.OnRewindStart += StartRewind;
@@ -27,8 +26,6 @@ public class Rewinder : MonoBehaviour
         if (isRewinding)
         {
             Rewind();
-            if (transform.position == spawnPoint)
-                Die();
         }
         else
             Register();

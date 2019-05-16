@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6541832284002329086}
   - component: {fileID: 1034790026}
   - component: {fileID: 8829030865738513917}
+  - component: {fileID: 143075506614487826}
   m_Layer: 15
   m_Name: Projectile_Player
   m_TagString: Untagged
@@ -99,8 +100,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 6656
   damage: 1
+  lifeTime: 2
   particle_Enemy_Hit: {fileID: 7403086830876697191, guid: 49fec206722fe504590262ae1fc5ca5f,
     type: 3}
+  rewinder: {fileID: 143075506614487826}
   moveSpeed: 0
 --- !u!65 &1034790026
 BoxCollider:
@@ -131,3 +134,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &143075506614487826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6541832284002329081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e83ffb10bd0476942923cd6da83a2299, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

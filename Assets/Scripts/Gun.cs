@@ -9,23 +9,30 @@ public class Gun : MonoBehaviour
     public Vector3 projectileRotation;
 
     float timer = 0;
-    //bool canShoot = true;
+    bool canShoot = true;
 
-    //private void Start()
-    //{
-    //    RewindManager.Instance.OnRewindStart += EndShooting;
-    //    RewindManager.Instance.OnRewindEnd += StartShooting;
-    //}
+    private void Start()
+    {
+        RewindManager.Instance.OnRewindStart += EndShooting;
+        RewindManager.Instance.OnRewindEnd += StartShooting;
+    }
 
     private void Update()
     {
-        timer -= Time.deltaTime;
+        if(canShoot)
+            timer -= Time.deltaTime;
+        else
+        {
+            timer += Time.deltaTime;
+            if(timer >= timeBetweenEachShot)
+                timer = 0;
+        }
     }
 
     public void Shoot()
     {
-        //if (!canShoot)
-        //    return;
+        if (!canShoot)
+            return;
 
         if(timer <= 0)
         {
@@ -36,13 +43,13 @@ public class Gun : MonoBehaviour
         }
     }
 
-    //void StartShooting()
-    //{
-    //    canShoot = true;
-    //}
-    //void EndShooting()
-    //{
-    //    canShoot = false;
-    //}
+    void StartShooting()
+    {
+        canShoot = true;
+    }
+    void EndShooting()
+    {
+        canShoot = false;
+    }
 
 }

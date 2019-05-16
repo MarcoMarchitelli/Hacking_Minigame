@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6541832284002329084}
   - component: {fileID: 6541832284002329087}
   - component: {fileID: 6541832284002329086}
+  - component: {fileID: 1436548536065731846}
   - component: {fileID: 3095962701781124492}
   - component: {fileID: 3826010506809374875}
   - component: {fileID: 3687463773318024219}
@@ -102,7 +103,21 @@ MonoBehaviour:
     m_Bits: 37888
   damage: 1
   particle_Enemy_Hit: {fileID: 0}
+  rewinder: {fileID: 1436548536065731846}
   moveSpeed: 0
+--- !u!114 &1436548536065731846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6541832284002329081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e83ffb10bd0476942923cd6da83a2299, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoint: {x: 0, y: 0, z: 0}
 --- !u!114 &3095962701781124492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,6 +136,7 @@ MonoBehaviour:
     m_Bits: 0
   damage: 0
   equippedGuns: []
+  materialRenderer: {fileID: 0}
 --- !u!135 &3826010506809374875
 SphereCollider:
   m_ObjectHideFlags: 0
