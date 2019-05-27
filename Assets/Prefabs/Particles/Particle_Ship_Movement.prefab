@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3851271941373718529}
   - component: {fileID: 3851271941373718535}
   - component: {fileID: 3851271941373718534}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Particle_Ship_Movement
   m_TagString: Untagged
   m_Icon: {fileID: 0}

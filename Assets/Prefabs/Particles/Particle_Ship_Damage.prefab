@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8569827923831982493}
   - component: {fileID: 8569827923831982495}
   - component: {fileID: 8569827923831982492}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Particle_Ship_Damage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4768,7 +4768,7 @@ GameObject:
   - component: {fileID: 8569827924219365640}
   - component: {fileID: 8569827924219365642}
   - component: {fileID: 8569827924219365643}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Ring_Small
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9578,7 +9578,7 @@ GameObject:
   - component: {fileID: 8569827924334772502}
   - component: {fileID: 8569827924334772520}
   - component: {fileID: 8569827924334772521}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Black_Ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14388,7 +14388,7 @@ GameObject:
   - component: {fileID: 8569827924478217386}
   - component: {fileID: 8569827924478217388}
   - component: {fileID: 8569827924478217389}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Ring_Big
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19198,7 +19198,7 @@ GameObject:
   - component: {fileID: 8569827925084072061}
   - component: {fileID: 8569827925084072063}
   - component: {fileID: 8569827925084072060}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Red_Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24008,7 +24008,7 @@ GameObject:
   - component: {fileID: 8569827925745374116}
   - component: {fileID: 8569827925745374118}
   - component: {fileID: 8569827925745374119}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Ring_Big_Fragments
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class RewindManager : MonoBehaviour
 {
+    public bool infiniteRunner = false;
+
     List<Rewinder> rewinders = new List<Rewinder>();
 
     public System.Action OnRewindStart, OnRewindEnd;
@@ -11,9 +13,12 @@ public class RewindManager : MonoBehaviour
     public static float REWIND_TIME = 5f;
 
     const float REWIND_COOLDOWN = 10f;
+    const float LEFT_STICK_DEADZONE = .8f;
 
     bool countTime = false;
     [HideInInspector] public float timer = 0;
+
+    Vector2 previousRewindCoords;
 
     private void Awake()
     {
@@ -23,10 +28,26 @@ public class RewindManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Rewind"))
-            StartRewind();
-        if (Input.GetButtonUp("Rewind"))
-            StopRewind();
+        if (!infiniteRunner)
+        {
+            if (Input.GetButtonDown("Rewind"))
+                StartRewind();
+            if (Input.GetButtonUp("Rewind"))
+                StopRewind();
+        }
+        else
+        {
+            Vector2 rewindCoords = new Vector2(Input.GetAxisRaw("Right Stick Horizontal"), Input.GetAxisRaw("Right Stick Vertical")).normalized;
+
+            if(Mathf.Abs(rewindCoords.x) > LEFT_STICK_DEADZONE || Mathf.Abs(rewindCoords.y) > LEFT_STICK_DEADZONE)
+            {
+                StartRewind();
+            }
+            else
+            {
+                StopRewind();
+            }
+        }
 
         if (countTime)
         {

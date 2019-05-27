@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using DG.Tweening;
 
 /// <summary>
 /// Handles movement and collision.
