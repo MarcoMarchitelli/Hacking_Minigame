@@ -95,7 +95,7 @@ public class Player_Infinite_Runner : LivingEntity
         controller.Move(moveVelocity);
 
         //shoot input
-        if(Input.GetButton("Infinite Runner Shoot"))
+        if (Input.GetButton("Infinite Runner Shoot"))
         {
             equippedGun.Shoot();
         }

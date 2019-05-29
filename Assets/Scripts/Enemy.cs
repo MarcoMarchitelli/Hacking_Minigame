@@ -29,6 +29,8 @@ public class Enemy : LivingEntity
     Rigidbody rb;
     Material mat;
     Color startingColor;
+    bool countTime;
+    float timer;
 
     #region Monos
 
@@ -52,6 +54,11 @@ public class Enemy : LivingEntity
     protected override void Start()
     {
         base.Start();
+
+        RewindManager.Instance.OnRewindStart += StopCounting;
+        RewindManager.Instance.OnRewindEnd += StartCounting;
+
+        StartCounting();
 
         //death event subscriptions
         OnDeath += Die;
@@ -78,6 +85,14 @@ public class Enemy : LivingEntity
     {
         if (equippedGuns != null)
             Shoot();
+
+        if (countTime)
+            timer += Time.deltaTime;
+        else
+            timer -= Time.deltaTime * RewindManager.rewindSpeed;
+
+        if (timer <= 0)
+            Destroy(gameObject);
     }
 
     #endregion
@@ -113,5 +128,15 @@ public class Enemy : LivingEntity
             materialFlash.AppendInterval(FLASH_WAIT_DURATION);
             materialFlash.Append(mat.DOColor(startingColor, "_EmissionColor", FLASH_INTERPOLATION_DURATION));
         }
+    }
+
+    void StartCounting()
+    {
+        countTime = true;
+    }
+
+    void StopCounting()
+    {
+        countTime = false;
     }
 }

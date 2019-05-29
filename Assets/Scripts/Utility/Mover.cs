@@ -11,20 +11,27 @@ public class Mover : MonoBehaviour
     {
         if (moveOnStart)
         {
-            Move(true);
+            StartMove();
         }
+
+        RewindManager.Instance.OnRewindStart += StopMove;
+        RewindManager.Instance.OnRewindEnd += StartMove;
     }
 
-    public void Move(bool _value)
+    private void OnDisable()
     {
-        if (_value)
-        {
-            StartCoroutine("MoveRoutine");
-        }
-        else
-        {
-            StopCoroutine("MoveRoutine");
-        }
+        RewindManager.Instance.OnRewindStart -= StopMove;
+        RewindManager.Instance.OnRewindEnd -= StartMove;
+    }
+
+    void StartMove()
+    {
+        StartCoroutine("MoveRoutine");
+    }
+
+    void StopMove()
+    {
+        StopCoroutine("MoveRoutine");
     }
 
     IEnumerator MoveRoutine()

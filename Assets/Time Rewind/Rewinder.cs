@@ -5,7 +5,25 @@ public class Rewinder : MonoBehaviour
 {
     List<PointInTime> registeredPoints;
 
-    bool isRewinding = false;
+    float timer = 0;
+    float timeToRewindFromAPointToAnoter;
+    bool _isRewinding = false;
+    bool IsRewinding
+    {
+        get { return _isRewinding; }
+        set
+        {
+            if (value != _isRewinding)
+            {
+                _isRewinding = value;
+                if (_isRewinding)
+                {
+                    timeToRewindFromAPointToAnoter = RewindManager.REWIND_TIME / registeredPoints.Count;
+                    timer = 0;
+                }
+            }
+        }
+    }
 
     private void Start()
     {
@@ -23,9 +41,12 @@ public class Rewinder : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isRewinding)
+        if (IsRewinding)
         {
-            Rewind();
+            timer += Time.fixedDeltaTime * RewindManager.rewindSpeed;
+            float percentFromCurrentPointToNext = timer / timeToRewindFromAPointToAnoter;
+
+            Rewind(percentFromCurrentPointToNext);
         }
         else
             Register();
@@ -41,14 +62,19 @@ public class Rewinder : MonoBehaviour
         registeredPoints.Insert(0, new PointInTime(transform.position, transform.rotation));
     }
 
-    void Rewind()
+    void Rewind(float _lerpPercent)
     {
         if (registeredPoints.Count > 0)
         {
             PointInTime temp = registeredPoints[0];
-            transform.position = temp.position;
-            transform.rotation = temp.rotation;
-            registeredPoints.RemoveAt(0);
+            transform.position = Vector3.Lerp(transform.position, temp.position, _lerpPercent);
+            transform.rotation = Quaternion.Lerp(transform.rotation, temp.rotation, _lerpPercent);
+
+            if (_lerpPercent >= 1)
+            {
+                registeredPoints.RemoveAt(0);
+                timer = 0;
+            }
         }
         else
         {
@@ -58,12 +84,12 @@ public class Rewinder : MonoBehaviour
 
     public void EndRewind()
     {
-        isRewinding = false;
+        IsRewinding = false;
     }
 
     public void StartRewind()
     {
-        isRewinding = true;
+        IsRewinding = true;
     }
 
     void Die()

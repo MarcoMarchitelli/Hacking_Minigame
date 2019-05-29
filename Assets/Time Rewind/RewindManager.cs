@@ -11,9 +11,11 @@ public class RewindManager : MonoBehaviour
 
     public static RewindManager Instance;
     public static float REWIND_TIME = 5f;
+    public static float rewindSpeed = .5f;
 
     const float REWIND_COOLDOWN = 10f;
-    const float LEFT_STICK_DEADZONE = .8f;
+    const float RIGHT_STICK_DEADZONE = .8f;
+    const float REWIND_STICK_ANGLE_SPEED_MAX = 5f;
 
     bool countTime = false;
     [HideInInspector] public float timer = 0;
@@ -39,11 +41,18 @@ public class RewindManager : MonoBehaviour
         {
             Vector2 rewindCoords = new Vector2(Input.GetAxisRaw("Right Stick Horizontal"), Input.GetAxisRaw("Right Stick Vertical")).normalized;
 
-            if(Mathf.Abs(rewindCoords.x) > LEFT_STICK_DEADZONE || Mathf.Abs(rewindCoords.y) > LEFT_STICK_DEADZONE)
+            if (rewindCoords.sqrMagnitude >= RIGHT_STICK_DEADZONE * RIGHT_STICK_DEADZONE)
             {
-                StartRewind();
+                if (!countTime)
+                    StartRewind();
+
+                float angle = Vector2.Angle(rewindCoords, previousRewindCoords);
+                print(angle);
+                rewindSpeed = Mathf.Clamp01(angle / REWIND_STICK_ANGLE_SPEED_MAX);
+
+                previousRewindCoords = rewindCoords;
             }
-            else
+            else if (countTime)
             {
                 StopRewind();
             }
@@ -51,7 +60,7 @@ public class RewindManager : MonoBehaviour
 
         if (countTime)
         {
-            timer += Time.deltaTime;
+            timer += Time.deltaTime * rewindSpeed;
             if (timer >= REWIND_TIME)
                 StopRewind();
         }

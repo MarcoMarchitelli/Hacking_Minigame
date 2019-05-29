@@ -26,6 +26,12 @@ public class Projectile : MonoBehaviour, IDestructable
         countTime = true;
     }
 
+    private void OnDisable()
+    {
+        RewindManager.Instance.OnRewindStart -= StopMove;
+        RewindManager.Instance.OnRewindEnd -= StartMove;
+    }
+
     void Update()
     {
         if (canMove)
@@ -36,7 +42,7 @@ public class Projectile : MonoBehaviour, IDestructable
             if(canMove)
                 timer += Time.deltaTime;
             else
-                timer -= Time.deltaTime;
+                timer -= Time.deltaTime * RewindManager.rewindSpeed;
 
             if (timer >= lifeTime || timer <= 0)
                 Die();

@@ -225,6 +225,7 @@ GameObject:
   - component: {fileID: 180457572}
   - component: {fileID: 180457571}
   - component: {fileID: 180457575}
+  - component: {fileID: 180457576}
   m_Layer: 0
   m_Name: Starting Ground
   m_TagString: Untagged
@@ -322,6 +323,18 @@ MonoBehaviour:
   moveOnStart: 1
   translation: {x: 0, y: 0, z: -15}
   space: 1
+--- !u!114 &180457576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180457570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e83ffb10bd0476942923cd6da83a2299, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &255689421
 GameObject:
   m_ObjectHideFlags: 0
@@ -1489,11 +1502,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 760994d17aafcda4d8a426f36a1e82dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnOnStart: 1
   prefabs:
   - {fileID: 3066188310264214735, guid: 47e929bedc3190a4a871b9687875ece1, type: 3}
   - {fileID: 7003252633316400312, guid: 1ac767f127748394ba066ef6df54794e, type: 3}
-  minTime: 2
-  maxTime: 3
+  startTime: 3.5
+  endTime: 0.5
+  difficultyOverTime:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.0037212456
+      outSlope: 0.0037212456
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.44903702
+    - serializedVersion: 3
+      time: 60
+      value: 1
+      inSlope: 0.068775706
+      outSlope: 0.068775706
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.26090443
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   width: 68
 --- !u!4 &1857623900
 Transform:
