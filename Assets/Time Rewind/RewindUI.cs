@@ -2,60 +2,63 @@
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class RewindUI : MonoBehaviour
+namespace Rewind
 {
-    public float fadeTime = 1.5f;
-
-    public Slider slider;
-    public Image sliderBackgroundImage;
-    public Image sliderFillImage;
-
-    Color sliderBackgroundImageColor;
-    Color sliderFillImageColor;
-
-    RewindManager rewind;
-
-    bool update;
-
-    private void Awake()
+    public class RewindUI : MonoBehaviour
     {
-        sliderBackgroundImageColor = sliderBackgroundImage.color;
-        sliderFillImageColor = sliderFillImage.color;
+        public float fadeTime = 1.5f;
 
-        sliderFillImage.color = Color.clear;
-        sliderBackgroundImage.color = Color.clear;
-    }
+        public Slider slider;
+        public Image sliderBackgroundImage;
+        public Image sliderFillImage;
 
-    private void Start()
-    {
-        rewind = RewindManager.Instance;
-        rewind.OnRewindStart += FadeIn;
-        rewind.OnRewindEnd += FadeOut;
-        slider.maxValue = slider.value = RewindManager.REWIND_TIME;
-    }
+        Color sliderBackgroundImageColor;
+        Color sliderFillImageColor;
 
-    private void Update()
-    {
-        if(update)
-            UpdateUI();
-    }
+        RewindManager rewind;
 
-    void UpdateUI()
-    {
-        slider.value = slider.maxValue - rewind.timer;
-    }
+        bool update;
 
-    void FadeIn()
-    {
-        update = true;
-        sliderBackgroundImage.DOColor(sliderBackgroundImageColor, fadeTime);
-        sliderFillImage.DOColor(sliderFillImageColor, fadeTime);
-    }
+        private void Awake()
+        {
+            sliderBackgroundImageColor = sliderBackgroundImage.color;
+            sliderFillImageColor = sliderFillImage.color;
 
-    void FadeOut()
-    {
-        update = false;
-        sliderBackgroundImage.DOColor(Color.clear, fadeTime);
-        sliderFillImage.DOColor(Color.clear, fadeTime);
-    }
+            sliderFillImage.color = Color.clear;
+            sliderBackgroundImage.color = Color.clear;
+        }
+
+        private void Start()
+        {
+            rewind = RewindManager.Instance;
+            rewind.OnRewindStart += FadeIn;
+            rewind.OnRewindEnd += FadeOut;
+            slider.maxValue = slider.value = RewindManager.REWIND_TIME;
+        }
+
+        private void Update()
+        {
+            if (update)
+                UpdateUI();
+        }
+
+        void UpdateUI()
+        {
+            slider.value = slider.maxValue - rewind.timer;
+        }
+
+        void FadeIn()
+        {
+            update = true;
+            sliderBackgroundImage.DOColor(sliderBackgroundImageColor, fadeTime);
+            sliderFillImage.DOColor(sliderFillImageColor, fadeTime);
+        }
+
+        void FadeOut()
+        {
+            update = false;
+            sliderBackgroundImage.DOColor(Color.clear, fadeTime);
+            sliderFillImage.DOColor(Color.clear, fadeTime);
+        }
+    } 
 }

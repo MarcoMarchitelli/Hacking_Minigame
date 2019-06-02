@@ -13,15 +13,6 @@ public class Mover : MonoBehaviour
         {
             StartMove();
         }
-
-        RewindManager.Instance.OnRewindStart += StopMove;
-        RewindManager.Instance.OnRewindEnd += StartMove;
-    }
-
-    private void OnDisable()
-    {
-        RewindManager.Instance.OnRewindStart -= StopMove;
-        RewindManager.Instance.OnRewindEnd -= StartMove;
     }
 
     void StartMove()

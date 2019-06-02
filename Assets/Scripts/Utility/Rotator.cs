@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class Rotator : MonoBehaviour
 {
@@ -6,30 +7,27 @@ public class Rotator : MonoBehaviour
     public Vector3 Euler;
     public float speed;
 
-    bool canRotate;
-
     private void Start()
     {
         if (rotateOnStart)
             StartRotation();
-
-        RewindManager.Instance.OnRewindStart += StopRotation;
-        RewindManager.Instance.OnRewindEnd += StartRotation;
     }
 
     void StartRotation()
     {
-        canRotate = true;
+        StartCoroutine("Rotation");
     }
-
     void StopRotation()
     {
-        canRotate = false;
+        StopCoroutine("Rotation");
     }
 
-    void Update()
+    IEnumerator Rotation()
     {
-        if (canRotate)
+        while (true)
+        {
             transform.Rotate(Euler * speed * Time.deltaTime, Space.Self);
+            yield return null;
+        }
     }
 }

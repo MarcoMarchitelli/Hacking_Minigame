@@ -12,32 +12,22 @@ public class Gun : MonoBehaviour
     public AudioSource ShotSource;
 
     float timer = 0;
-    bool canShoot = true;
 
     private void Start()
     {
-        RewindManager.Instance.OnRewindStart += EndShooting;
-        RewindManager.Instance.OnRewindEnd += StartShooting;
+        timer = timeBetweenEachShot;
     }
 
     private void Update()
     {
-        if (canShoot)
-            timer -= Time.deltaTime;
-        else
-        {
-            timer += Time.deltaTime;
-            if (timer >= timeBetweenEachShot)
-                timer = 0;
-        }
+        timer -= Time.deltaTime;
+        if (timer <= 0)
+            timer = timeBetweenEachShot;
     }
 
     public void Shoot()
     {
-        if (!canShoot)
-            return;
-
-        if (timer <= 0)
+        if (timer >= timeBetweenEachShot)
         {
             Projectile proj = Instantiate(projectilePrefab, shootPoint.position, shootPoint.rotation) as Projectile;
             proj.moveSpeed = projectileSpeed;
@@ -47,14 +37,4 @@ public class Gun : MonoBehaviour
                 ShotSource.Play();
         }
     }
-
-    void StartShooting()
-    {
-        canShoot = true;
-    }
-    void EndShooting()
-    {
-        canShoot = false;
-    }
-
 }

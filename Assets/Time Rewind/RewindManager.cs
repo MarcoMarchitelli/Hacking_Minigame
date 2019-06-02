@@ -1,43 +1,36 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class RewindManager : MonoBehaviour
+namespace Rewind
 {
-    public bool infiniteRunner = false;
-
-    List<Rewinder> rewinders = new List<Rewinder>();
-
-    public System.Action OnRewindStart, OnRewindEnd;
-
-    public static RewindManager Instance;
-    public static float REWIND_TIME = 5f;
-    public static float rewindSpeed = .5f;
-
-    const float REWIND_COOLDOWN = 10f;
-    const float RIGHT_STICK_DEADZONE = .8f;
-    const float REWIND_STICK_ANGLE_SPEED_MAX = 5f;
-
-    bool countTime = false;
-    [HideInInspector] public float timer = 0;
-
-    Vector2 previousRewindCoords;
-
-    private void Awake()
+    public class RewindManager : MonoBehaviour
     {
-        if (Instance == null)
-            Instance = this;
-    }
+        List<Rewinder> rewinders = new List<Rewinder>();
 
-    private void Update()
-    {
-        if (!infiniteRunner)
+        public System.Action OnRewindStart, OnRewindEnd;
+
+        public static RewindManager Instance;
+        public static float REWIND_TIME = 5f;
+        public static float rewindSpeed = .5f;
+
+        const float REWIND_COOLDOWN = 10f;
+        const float RIGHT_STICK_DEADZONE = .8f;
+        const float REWIND_STICK_ANGLE_SPEED_MAX = 5f;
+
+        bool countTime = false;
+        [HideInInspector] public float timer = 0;
+
+        Vector2 previousRewindCoords;
+
+        #region Monos
+
+        private void Awake()
         {
-            if (Input.GetButtonDown("Rewind"))
-                StartRewind();
-            if (Input.GetButtonUp("Rewind"))
-                StopRewind();
+            if (Instance == null)
+                Instance = this;
         }
-        else
+
+        private void Update()
         {
             Vector2 rewindCoords = new Vector2(Input.GetAxisRaw("Right Stick Horizontal"), Input.GetAxisRaw("Right Stick Vertical")).normalized;
 
@@ -56,36 +49,42 @@ public class RewindManager : MonoBehaviour
             {
                 StopRewind();
             }
+
+            if (countTime)
+            {
+                timer += Time.deltaTime * rewindSpeed;
+                if (timer >= REWIND_TIME)
+                    StopRewind();
+            }
         }
 
-        if (countTime)
+        #endregion
+
+        #region API
+
+        public void StopRewind()
         {
-            timer += Time.deltaTime * rewindSpeed;
-            if (timer >= REWIND_TIME)
-                StopRewind();
+            countTime = false;
+            timer = 0;
+            OnRewindEnd?.Invoke();
         }
-    }
 
-    public void StopRewind()
-    {
-        countTime = false;
-        timer = 0;
-        OnRewindEnd?.Invoke();
-    }
+        public void StartRewind()
+        {
+            countTime = true;
+            OnRewindStart?.Invoke();
+        }
 
-    public void StartRewind()
-    {
-        countTime = true;
-        OnRewindStart?.Invoke();
-    }
+        public void AddRewinder(Rewinder _rewinder)
+        {
+            rewinders.Add(_rewinder);
+        }
 
-    public void AddRewinder(Rewinder _rewinder)
-    {
-        rewinders.Add(_rewinder);
-    }
+        public void RemoveRewinder(Rewinder _rewinder)
+        {
+            rewinders.Remove(_rewinder);
+        }
 
-    public void RemoveRewinder(Rewinder _rewinder)
-    {
-        rewinders.Remove(_rewinder);
-    }
+        #endregion
+    } 
 }

@@ -23,9 +23,6 @@ public class Follower : MonoBehaviour
 
     private void Start()
     {
-        RewindManager.Instance.OnRewindStart += EndFollow;
-        RewindManager.Instance.OnRewindEnd += StartFollow;
-
         StartFollow();
     }
 

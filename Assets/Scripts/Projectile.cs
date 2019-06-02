@@ -9,44 +9,19 @@ public class Projectile : MonoBehaviour, IDestructable
 
     [Header("Graphics References")]
     public ParticleSystem particle_Enemy_Hit;
-    public Rewinder rewinder;
 
     [HideInInspector] public float moveSpeed;
 
     float timer = 0;
-    bool canMove = true;
-    bool countTime = false;
-
-    private void Start()
-    {
-        RewindManager.Instance.OnRewindStart += StopMove;
-        RewindManager.Instance.OnRewindEnd += StartMove;
-
-        timer = 0;
-        countTime = true;
-    }
-
-    private void OnDisable()
-    {
-        RewindManager.Instance.OnRewindStart -= StopMove;
-        RewindManager.Instance.OnRewindEnd -= StartMove;
-    }
 
     void Update()
     {
-        if (canMove)
-            transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+        transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
 
-        if (countTime)
-        {
-            if(canMove)
-                timer += Time.deltaTime;
-            else
-                timer -= Time.deltaTime * RewindManager.rewindSpeed;
+        timer += Time.deltaTime;
 
-            if (timer >= lifeTime || timer <= 0)
-                Die();
-        }
+        if (timer >= lifeTime || timer <= 0)
+            Die();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -75,15 +50,5 @@ public class Projectile : MonoBehaviour, IDestructable
     public void Die()
     {
         Destroy(gameObject);
-    }
-
-    void StartMove()
-    {
-        canMove = true;
-    }
-
-    void StopMove()
-    {
-        canMove = false;
     }
 }

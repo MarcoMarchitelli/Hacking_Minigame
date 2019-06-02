@@ -1,112 +1,115 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class Rewinder : MonoBehaviour
+namespace Rewind
 {
-    List<PointInTime> registeredPoints;
-
-    float timer = 0;
-    float timeToRewindFromAPointToAnoter;
-    bool _isRewinding = false;
-    bool IsRewinding
+    public class Rewinder : MonoBehaviour
     {
-        get { return _isRewinding; }
-        set
+        List<PointInTime> registeredPoints;
+
+        float timer = 0;
+        float timeToRewindFromAPointToAnoter;
+        bool _isRewinding = false;
+        bool IsRewinding
         {
-            if (value != _isRewinding)
+            get { return _isRewinding; }
+            set
             {
-                _isRewinding = value;
-                if (_isRewinding)
+                if (value != _isRewinding)
                 {
-                    timeToRewindFromAPointToAnoter = RewindManager.REWIND_TIME / registeredPoints.Count;
-                    timer = 0;
+                    _isRewinding = value;
+                    if (_isRewinding)
+                    {
+                        timeToRewindFromAPointToAnoter = RewindManager.REWIND_TIME / registeredPoints.Count;
+                        timer = 0;
+                    }
                 }
             }
         }
-    }
 
-    private void Start()
-    {
-        RewindManager.Instance.AddRewinder(this);
-        RewindManager.Instance.OnRewindStart += StartRewind;
-        RewindManager.Instance.OnRewindEnd += EndRewind;
-
-        registeredPoints = new List<PointInTime>();
-    }
-
-    private void OnDisable()
-    {
-        RewindManager.Instance.RemoveRewinder(this);
-    }
-
-    private void FixedUpdate()
-    {
-        if (IsRewinding)
+        private void Start()
         {
-            timer += Time.fixedDeltaTime * RewindManager.rewindSpeed;
-            float percentFromCurrentPointToNext = timer / timeToRewindFromAPointToAnoter;
+            RewindManager.Instance.AddRewinder(this);
+            RewindManager.Instance.OnRewindStart += StartRewind;
+            RewindManager.Instance.OnRewindEnd += EndRewind;
 
-            Rewind(percentFromCurrentPointToNext);
-        }
-        else
-            Register();
-    }
-
-    void Register()
-    {
-        if (registeredPoints.Count > Mathf.RoundToInt(RewindManager.REWIND_TIME / Time.fixedDeltaTime))
-        {
-            registeredPoints.RemoveAt(registeredPoints.Count - 1);
+            registeredPoints = new List<PointInTime>();
         }
 
-        registeredPoints.Insert(0, new PointInTime(transform.position, transform.rotation));
-    }
-
-    void Rewind(float _lerpPercent)
-    {
-        if (registeredPoints.Count > 0)
+        private void OnDisable()
         {
-            PointInTime temp = registeredPoints[0];
-            transform.position = Vector3.Lerp(transform.position, temp.position, _lerpPercent);
-            transform.rotation = Quaternion.Lerp(transform.rotation, temp.rotation, _lerpPercent);
+            RewindManager.Instance.RemoveRewinder(this);
+        }
 
-            if (_lerpPercent >= 1)
+        private void FixedUpdate()
+        {
+            if (IsRewinding)
             {
-                registeredPoints.RemoveAt(0);
-                timer = 0;
+                timer += Time.fixedDeltaTime * RewindManager.rewindSpeed;
+                float percentFromCurrentPointToNext = timer / timeToRewindFromAPointToAnoter;
+
+                Rewind(percentFromCurrentPointToNext);
+            }
+            else
+                Register();
+        }
+
+        void Register()
+        {
+            if (registeredPoints.Count > Mathf.RoundToInt(RewindManager.REWIND_TIME / Time.fixedDeltaTime))
+            {
+                registeredPoints.RemoveAt(registeredPoints.Count - 1);
+            }
+
+            registeredPoints.Insert(0, new PointInTime(transform.position, transform.rotation));
+        }
+
+        void Rewind(float _lerpPercent)
+        {
+            if (registeredPoints.Count > 0)
+            {
+                PointInTime temp = registeredPoints[0];
+                transform.position = Vector3.Lerp(transform.position, temp.position, _lerpPercent);
+                transform.rotation = Quaternion.Lerp(transform.rotation, temp.rotation, _lerpPercent);
+
+                if (_lerpPercent >= 1)
+                {
+                    registeredPoints.RemoveAt(0);
+                    timer = 0;
+                }
+            }
+            else
+            {
+                EndRewind();
             }
         }
-        else
+
+        public void EndRewind()
         {
-            EndRewind();
+            IsRewinding = false;
         }
+
+        public void StartRewind()
+        {
+            IsRewinding = true;
+        }
+
+        void Die()
+        {
+            Destroy(gameObject);
+        }
+
     }
 
-    public void EndRewind()
+    public struct PointInTime
     {
-        IsRewinding = false;
-    }
+        public Vector3 position;
+        public Quaternion rotation;
 
-    public void StartRewind()
-    {
-        IsRewinding = true;
-    }
-
-    void Die()
-    {
-        Destroy(gameObject);
-    }
-
-}
-
-public struct PointInTime
-{
-    public Vector3 position;
-    public Quaternion rotation;
-
-    public PointInTime(Vector3 position, Quaternion rotation)
-    {
-        this.position = position;
-        this.rotation = rotation;
-    }
+        public PointInTime(Vector3 position, Quaternion rotation)
+        {
+            this.position = position;
+            this.rotation = rotation;
+        }
+    } 
 }

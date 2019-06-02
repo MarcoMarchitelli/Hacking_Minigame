@@ -4,7 +4,7 @@
 /// Handles movement and collision.
 /// </summary>
 [RequireComponent(typeof (Rigidbody))]
-public class PlayerController_Infinite_Runner : MonoBehaviour
+public class RewindPlayerController : MonoBehaviour
 {
     Rigidbody rb;
     Vector3 velocity;

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -8,7 +9,6 @@ public class EnemySpawner : MonoBehaviour
     public AnimationCurve difficultyOverTime;
     public float width;
 
-    bool countTime;
     float timer, currentSpawnTime;
 
     private void Start()
@@ -17,36 +17,29 @@ public class EnemySpawner : MonoBehaviour
         {
             StartSpawning();
         }
-
-        RewindManager.Instance.OnRewindStart += StopSpawning;
-        RewindManager.Instance.OnRewindEnd += StartSpawning;
-    }
-
-    private void Update()
-    {
-        currentSpawnTime = Mathf.Lerp(startTime, endTime, difficultyOverTime.Evaluate(Time.time));
-
-        if (countTime)        
-            timer += Time.deltaTime;        
-        else
-            timer -= Time.deltaTime;
-
-        if (timer <= 0)
-            timer = currentSpawnTime;
-
-        if (timer > currentSpawnTime)
-            Spawn();
     }
 
     void StartSpawning()
     {
-        timer = 0;
-        countTime = true;
+        StartCoroutine("SpawnRoutine");
     }
 
     void StopSpawning()
     {
-        countTime = false;
+        StopCoroutine("SpawnRoutine");
+    }
+
+    IEnumerator SpawnRoutine()
+    {
+        timer = 0;
+        while (timer < currentSpawnTime)
+        {
+            currentSpawnTime = Mathf.Lerp(startTime, endTime, difficultyOverTime.Evaluate(Time.time));
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        Spawn();
     }
 
     void Spawn()

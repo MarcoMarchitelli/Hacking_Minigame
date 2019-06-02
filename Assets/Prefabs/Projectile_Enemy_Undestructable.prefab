@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 3826010506809374875}
   - component: {fileID: 3687463773318024219}
   - component: {fileID: 2879068483029188007}
-  - component: {fileID: 2230987537956012359}
   m_Layer: 14
   m_Name: Projectile_Enemy_Undestructable
   m_TagString: Untagged
@@ -102,8 +101,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 5120
   damage: 1
+  lifeTime: 3
   particle_Enemy_Hit: {fileID: 0}
-  rewinder: {fileID: 2230987537956012359}
+  rewinder: {fileID: 0}
   moveSpeed: 0
 --- !u!114 &3095962701781124492
 MonoBehaviour:
@@ -166,16 +166,3 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2230987537956012359
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6541832284002329081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e83ffb10bd0476942923cd6da83a2299, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnPoint: {x: 0, y: 0, z: 0}
