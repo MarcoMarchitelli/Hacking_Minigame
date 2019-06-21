@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4536657874156872819}
-  - component: {fileID: 5781448226690986525}
+  - component: {fileID: 6644591960439454606}
   m_Layer: 9
   m_Name: Gun 1
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 7003252633316400316}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5781448226690986525
+--- !u!114 &6644591960439454606
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,10 +40,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4333486805645225195}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b207ac7883d0c74f8a6a862bda02f8d, type: 3}
+  m_Script: {fileID: 11500000, guid: 5c006b970046de7428428479e9385ea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 6541832284002329086, guid: c6d71b47644aa1c41bee378567c06c1a,
+  projectilePrefab: {fileID: -632294854348210754, guid: ca12739970fbe064ea5ac8df5f1e23bf,
     type: 3}
   shootPoint: {fileID: 4536657874156872819}
   timeBetweenEachShot: 0.8
@@ -166,10 +166,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7003252633316400316}
-  - component: {fileID: 7003252633316400317}
+  - component: {fileID: 2413889121664290338}
   - component: {fileID: 6523523638171058287}
   - component: {fileID: 4638210008143846734}
-  - component: {fileID: 7003252633316400313}
+  - component: {fileID: 1373778216605499439}
   m_Layer: 9
   m_Name: Infinite_Runner_Enemy Square
   m_TagString: Untagged
@@ -193,7 +193,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7003252633316400317
+--- !u!114 &2413889121664290338
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -202,7 +202,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7003252633316400312}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5761b3247ab73a48b0e8a7b1e9fb1a8, type: 3}
+  m_Script: {fileID: 11500000, guid: 22af5e14df0001644bd02ef48fac0802, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 3
@@ -211,7 +211,7 @@ MonoBehaviour:
     m_Bits: 1024
   damage: 1
   equippedGuns:
-  - {fileID: 5781448226690986525}
+  - {fileID: 6644591960439454606}
   materialRenderer: {fileID: 4638210008864484850}
 --- !u!54 &6523523638171058287
 Rigidbody:
@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e83ffb10bd0476942923cd6da83a2299, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7003252633316400313
+--- !u!114 &1373778216605499439
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -250,7 +250,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7003252633316400312}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbe4b515adf2985439de442930cbf814, type: 3}
+  m_Script: {fileID: 11500000, guid: 765cd0550e441a8478dadffe5c48ab44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveOnStart: 1

@@ -224,8 +224,8 @@ GameObject:
   - component: {fileID: 180457573}
   - component: {fileID: 180457572}
   - component: {fileID: 180457571}
-  - component: {fileID: 180457575}
   - component: {fileID: 180457576}
+  - component: {fileID: 180457575}
   m_Layer: 0
   m_Name: Starting Ground
   m_TagString: Untagged
@@ -317,7 +317,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 180457570}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbe4b515adf2985439de442930cbf814, type: 3}
+  m_Script: {fileID: 11500000, guid: 765cd0550e441a8478dadffe5c48ab44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveOnStart: 1
@@ -1458,7 +1458,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1857623899
 MonoBehaviour:
   m_ObjectHideFlags: 0

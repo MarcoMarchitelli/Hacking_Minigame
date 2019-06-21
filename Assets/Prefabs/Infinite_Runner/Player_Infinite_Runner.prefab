@@ -276,7 +276,7 @@ GameObject:
   - component: {fileID: 7734709054598635479}
   - component: {fileID: 7734709054598635482}
   - component: {fileID: 8405790086137895255}
-  - component: {fileID: 7787990283336882661}
+  - component: {fileID: 2167833590354933481}
   - component: {fileID: 7734709054598635478}
   m_Layer: 10
   m_Name: Player_Infinite_Runner
@@ -318,8 +318,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 3
   moveSpeed: 55
-  turnSpeed: 90
-  startingGun: {fileID: 7787990283336882661}
+  startingGun: {fileID: 2167833590354933481}
   ship_Side_L: {fileID: 1361789966741361028}
   ship_Side_R: {fileID: 3600243396226324882}
   particle_Ship_Movement: {fileID: 7734709055798435304}
@@ -339,7 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 745d680298e55ab40b967f5315435972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7787990283336882661
+--- !u!114 &2167833590354933481
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -348,15 +347,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 7734709054598635483}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b207ac7883d0c74f8a6a862bda02f8d, type: 3}
+  m_Script: {fileID: 11500000, guid: 5c006b970046de7428428479e9385ea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 6541832284002329086, guid: 5eb2c5c73c2535d46b2022e877b948c9,
+  projectilePrefab: {fileID: 1216528050697690846, guid: dff1988a0e4b81e489fde47cac2e0e28,
     type: 3}
   shootPoint: {fileID: 415877270281781268}
-  timeBetweenEachShot: 0.1
-  projectileSpeed: 55
-  projectileRotation: {x: 0, y: 0, z: 45}
+  timeBetweenEachShot: 0.5
+  projectileSpeed: 25
+  projectileRotation: {x: 0, y: 0, z: 0}
   ShotSource: {fileID: 444450721263029013}
 --- !u!54 &7734709054598635478
 Rigidbody:
@@ -580,48 +579,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8569827924478217388, guid: b0bd5273677c9964eae672fbd48fdf23,
         type: 3}
-      propertyPath: CollisionModule.enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8569827924478217388, guid: b0bd5273677c9964eae672fbd48fdf23,
-        type: 3}
-      propertyPath: CollisionModule.type
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8569827924478217388, guid: b0bd5273677c9964eae672fbd48fdf23,
-        type: 3}
-      propertyPath: CollisionModule.multiplyColliderForceByCollisionAngle
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8569827924478217388, guid: b0bd5273677c9964eae672fbd48fdf23,
-        type: 3}
-      propertyPath: CollisionModule.m_Bounce.scalar
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8569827924478217388, guid: b0bd5273677c9964eae672fbd48fdf23,
-        type: 3}
       propertyPath: CollisionModule.collidesWith.m_Bits
       value: 2560
-      objectReference: {fileID: 0}
-    - target: {fileID: 8569827924478217388, guid: b0bd5273677c9964eae672fbd48fdf23,
-        type: 3}
-      propertyPath: CollisionModule.collisionMessages
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8569827925745374119, guid: b0bd5273677c9964eae672fbd48fdf23,
-        type: 3}
-      propertyPath: m_VertexStreams.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8569827925745374119, guid: b0bd5273677c9964eae672fbd48fdf23,
-        type: 3}
-      propertyPath: m_VertexStreams.Array.data[1]
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8569827925745374119, guid: b0bd5273677c9964eae672fbd48fdf23,
-        type: 3}
-      propertyPath: m_VertexStreams.Array.data[2]
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0bd5273677c9964eae672fbd48fdf23, type: 3}
