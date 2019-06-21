@@ -5,14 +5,14 @@ public class LevelScroller : MonoBehaviour
     public Transform groundPrefab;
     public Transform startingGround;
 
-    const int GROUNDS_COUNT = 3;
-    const float LIMIT_OFFSET = 50f;
+    private const int GROUNDS_COUNT = 3;
+    private const float LIMIT_OFFSET = 50f;
 
-    Vector3 botLimit;
-    float groundLength;
+    private Vector3 botLimit;
+    private float groundLength;
 
-    public Transform[] grounds;
-    Transform firstGround, lastGround;
+    private Transform[] grounds;
+    private Transform firstGround, lastGround;
 
     int _firstGroundIndex = 0;
     int FirstGroundIndex
