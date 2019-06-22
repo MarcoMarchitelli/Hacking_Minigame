@@ -20,7 +20,7 @@ public class Projectile : MonoBehaviour, IDestructable
 
         timer += Time.deltaTime;
 
-        if (timer >= lifeTime || timer <= 0)
+        if (timer >= lifeTime)
             Die();
     }
 

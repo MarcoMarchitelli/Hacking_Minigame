@@ -91,7 +91,7 @@ namespace Rewind
             if (countTime)
                 timer += Time.deltaTime;
             else
-                timer -= Time.deltaTime * RewindManager.rewindSpeed;
+                timer -= Time.deltaTime * RewindManager.REWIND_SPEED;
 
             if (timer <= 0)
                 Destroy(gameObject);

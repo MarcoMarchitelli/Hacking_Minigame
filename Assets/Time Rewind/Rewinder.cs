@@ -5,12 +5,11 @@ namespace Rewind
 {
     public class Rewinder : MonoBehaviour
     {
-        List<PointInTime> registeredPoints;
+        private List<PointInTime> registeredPoints;
 
-        float timer = 0;
-        float timeToRewindFromAPointToAnoter;
-        bool _isRewinding = false;
-        bool IsRewinding
+        private float timeToRewindFromAPointToAnoter;
+        private bool _isRewinding = false;
+        private bool IsRewinding
         {
             get { return _isRewinding; }
             set
@@ -19,13 +18,11 @@ namespace Rewind
                 {
                     _isRewinding = value;
                     if (_isRewinding)
-                    {
                         timeToRewindFromAPointToAnoter = RewindManager.REWIND_TIME / registeredPoints.Count;
-                        timer = 0;
-                    }
                 }
             }
         }
+        private int currentTargetPointInTimeIdex;
 
         private void Start()
         {
@@ -45,10 +42,7 @@ namespace Rewind
         {
             if (IsRewinding)
             {
-                timer += Time.fixedDeltaTime * RewindManager.rewindSpeed;
-                float percentFromCurrentPointToNext = timer / timeToRewindFromAPointToAnoter;
-
-                Rewind(percentFromCurrentPointToNext);
+                Rewind(RewindManager.Instance.timer / timeToRewindFromAPointToAnoter);
             }
             else
                 Register();
@@ -64,19 +58,31 @@ namespace Rewind
             registeredPoints.Insert(0, new PointInTime(transform.position, transform.rotation));
         }
 
-        void Rewind(float _lerpPercent)
+        void Rewind(float _currentPointInTimePlusLerpPercentage)
         {
-            if (registeredPoints.Count > 0)
-            {
-                PointInTime temp = registeredPoints[0];
-                transform.position = Vector3.Lerp(transform.position, temp.position, _lerpPercent);
-                transform.rotation = Quaternion.Lerp(transform.rotation, temp.rotation, _lerpPercent);
+            //TODO: test this new method by printing all this data.
+            currentTargetPointInTimeIdex = Mathf.FloorToInt(_currentPointInTimePlusLerpPercentage);
+            float tempLerpPercent = _currentPointInTimePlusLerpPercentage - currentTargetPointInTimeIdex;
 
-                if (_lerpPercent >= 1)
-                {
-                    registeredPoints.RemoveAt(0);
-                    timer = 0;
-                }
+            if (registeredPoints.Count > 0 && currentTargetPointInTimeIdex >= 0 && currentTargetPointInTimeIdex <= registeredPoints.Count - 1)
+            {
+                PointInTime temp = registeredPoints[currentTargetPointInTimeIdex];
+                transform.position = Vector3.Lerp(transform.position, temp.position, tempLerpPercent);
+                transform.rotation = Quaternion.Lerp(transform.rotation, temp.rotation, tempLerpPercent);
+
+                //switch (RewindManager.RewindDirection)
+                //{
+                //    case 1:
+                //        if(currentRewindLerpPercent < previuosRewindLerpPercent)
+                //            currentTargetPointInTimeIdex++;
+                //        break;
+                //    case -1:
+                //        if(currentRewindLerpPercent > previuosRewindLerpPercent)
+                //            currentTargetPointInTimeIdex--;
+                //        break;
+                //}
+
+                //previuosRewindLerpPercent = currentRewindLerpPercent;
             }
             else
             {
@@ -86,6 +92,12 @@ namespace Rewind
 
         public void EndRewind()
         {
+            while (currentTargetPointInTimeIdex > 0)
+            {
+                registeredPoints.RemoveAt(0);
+                currentTargetPointInTimeIdex--;
+            }
+
             IsRewinding = false;
         }
 
@@ -111,5 +123,5 @@ namespace Rewind
             this.position = position;
             this.rotation = rotation;
         }
-    } 
+    }
 }

@@ -42,12 +42,17 @@ namespace Rewind
             if (countTime)
             {
                 if (canMove)
+                {
                     timer += Time.deltaTime;
-                else
-                    timer -= Time.deltaTime * RewindManager.rewindSpeed;
-
-                if (timer >= lifeTime || timer <= 0)
-                    Die();
+                    if (timer >= lifeTime || timer <= 0)
+                        Die();
+                }
+                else 
+                {
+                    float tempLifeTimer = timer - RewindManager.Instance.timer;
+                    if (tempLifeTimer <= 0 || tempLifeTimer >= lifeTime)
+                        Die();
+                }
             }
         }
 
@@ -88,5 +93,5 @@ namespace Rewind
         {
             canMove = false;
         }
-    } 
+    }
 }
