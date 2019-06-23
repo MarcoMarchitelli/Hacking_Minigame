@@ -23,15 +23,20 @@ namespace Rewind
         const float REWIND_COOLDOWN = 10f;
         const float RIGHT_STICK_DEADZONE = .8f;
         const float REWIND_STICK_ANGLE_SPEED_MAX = 5f;
+        /// <summary>
+        /// When going forward in time when do we stop the rewind AFTER hitting the starting point?
+        /// </summary>
+        const float FORWARD_TIME_ACTIVATION_TRESHOLD = .3f;
 
-        bool countTime = false;
         /// <summary>
         /// How much time we rewinded in this rewind session.
         /// </summary>
         [HideInInspector] public float timer = 0;
 
-        Vector2 previousRewindCoords, currentRewindCoords;
-        Quadrant currentQuadrant, previousQuadrant;
+        private Vector2 previousRewindCoords, currentRewindCoords;
+        private Quadrant currentQuadrant, previousQuadrant;
+        private bool rewinding = false;
+        private bool canRewind = false;
 
         #region Monos
 
@@ -39,52 +44,66 @@ namespace Rewind
         {
             if (Instance == null)
                 Instance = this;
+
+            canRewind = true;
         }
 
         private void Update()
         {
-            //currentRewindCoords = new Vector2(Input.GetAxisRaw("Right Stick Horizontal"), Input.GetAxisRaw("Right Stick Vertical")).normalized;
+            if (!canRewind)
+                return;
 
-            //if (currentRewindCoords.sqrMagnitude >= RIGHT_STICK_DEADZONE * RIGHT_STICK_DEADZONE)
+            currentRewindCoords = new Vector2(Input.GetAxisRaw("Right Stick Horizontal"), Input.GetAxisRaw("Right Stick Vertical")).normalized;
+
+            if (currentRewindCoords.sqrMagnitude >= RIGHT_STICK_DEADZONE * RIGHT_STICK_DEADZONE)
+            {
+                if (!rewinding)
+                    StartRewind();
+
+                CheckQuadrant(currentRewindCoords);
+                CompareQuadrants();
+
+                float angle = Vector2.Angle(currentRewindCoords, previousRewindCoords);
+                REWIND_SPEED = Mathf.Clamp01(angle / REWIND_STICK_ANGLE_SPEED_MAX);
+
+                previousRewindCoords = currentRewindCoords;
+                previousQuadrant = currentQuadrant;
+            }
+            else if (rewinding)
+            {
+                StopRewind();
+            }
+
+            if (rewinding)
+            {
+                //if we are going BACK in time we INCREMENT this timer, which counts how much time we are REWINDING.
+                timer += Time.deltaTime * REWIND_SPEED * -RewindDirection;
+                if (timer > REWIND_TIME || timer < 0 - FORWARD_TIME_ACTIVATION_TRESHOLD)
+                    StopRewind();
+            }
+
+            #region Debug
+            //if (Input.GetKeyDown(KeyCode.Space))
             //{
             //    if (!countTime)
             //        StartRewind();
-
-            //    CheckQuadrant(currentRewindCoords);
-            //    CompareQuadrants();
-
-            //    float angle = Vector2.Angle(currentRewindCoords, previousRewindCoords);
-            //    REWIND_SPEED = Mathf.Clamp01(angle / REWIND_STICK_ANGLE_SPEED_MAX);
-
-            //    previousRewindCoords = currentRewindCoords;
-            //    previousQuadrant = currentQuadrant;
+            //    else
+            //        StopRewind();
             //}
-            //else if (countTime)
+
+            //if (countTime)
             //{
-            //    StopRewind();
+            //    if (Input.GetKeyDown(KeyCode.A))
+            //        RewindDirection = 1;
+            //    else if (Input.GetKeyDown(KeyCode.D))
+            //        RewindDirection = -1;
+
+            //    //if we are going BACK in time we INCREMENT this timer, which counts how much time we are REWINDING.
+            //    timer += Time.deltaTime * REWIND_SPEED * -RewindDirection;
+            //    if (timer >= REWIND_TIME || timer <= 0)
+            //        StopRewind();
             //}
-
-            //HACK: DEBUG STUF AAAAAAAAAAAAAAAAAAAAAAAAAAA__________________________________-------------------------------------------
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                if (!countTime)
-                    StartRewind();
-                else
-                    StopRewind();
-            }         
-
-            if (countTime)
-            {
-                if (Input.GetKeyDown(KeyCode.A))
-                    RewindDirection = 1;
-                else if(Input.GetKeyDown(KeyCode.D))
-                    RewindDirection = -1;
-
-                //if we are going BACK in time we INCREMENT this timer, which counts how much time we are REWINDING.
-                timer += Time.deltaTime * REWIND_SPEED * -RewindDirection;
-                if (timer >= REWIND_TIME || timer <= 0)
-                    StopRewind();
-            }
+            #endregion
         }
 
         #endregion
@@ -225,14 +244,16 @@ namespace Rewind
 
         public void StopRewind()
         {
-            countTime = false;
+            canRewind = false;
+            rewinding = false;
             timer = 0;
             OnRewindEnd?.Invoke();
+            Timer.StartTimer(REWIND_COOLDOWN, () => canRewind = true);
         }
 
         public void StartRewind()
         {
-            countTime = true;
+            rewinding = true;
             RewindDirection = -1;
             OnRewindStart?.Invoke();
         }

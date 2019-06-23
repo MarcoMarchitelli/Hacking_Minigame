@@ -19,8 +19,7 @@ namespace Rewind
                     _isRewinding = value;
                     if (_isRewinding)
                     {
-                        if (registerTimer >= RewindManager.REWIND_TIME)
-                            registerTimer = RewindManager.REWIND_TIME;
+                        registerTimer = Mathf.Clamp(registerTimer, 0, RewindManager.REWIND_TIME);
                         timeToRewindFromAPointToAnoter = registerTimer / registeredPoints.Count;
                     }
                     else
@@ -49,7 +48,7 @@ namespace Rewind
         {
             if (isRewinding)
             {
-                Rewind(RewindManager.Instance.timer / timeToRewindFromAPointToAnoter);
+                Rewind(Mathf.Clamp(RewindManager.Instance.timer, 0, RewindManager.REWIND_TIME) / timeToRewindFromAPointToAnoter);
             }
             else
             {
@@ -63,11 +62,9 @@ namespace Rewind
             if (registeredPoints.Count > Mathf.RoundToInt(RewindManager.REWIND_TIME / Time.fixedDeltaTime))
             {
                 registeredPoints.RemoveAt(registeredPoints.Count - 1);
-                print(name + " has too many point! removed one.");
             }
 
             registeredPoints.Insert(0, new PointInTime(transform.position, transform.rotation));
-            print(name + " registered a point!");
         }
 
         void Rewind(float _currentPointInTimePlusLerpPercentage)
@@ -83,7 +80,7 @@ namespace Rewind
                 transform.position = Vector3.Lerp(tempStart.position, tempTarget.position, tempLerpPercent);
                 transform.rotation = Quaternion.Lerp(tempStart.rotation, tempTarget.rotation, tempLerpPercent);
 
-                print(name + " rewinded from point: " + currentPointInTimeIndex + ", to point: " + (currentPointInTimeIndex + 1) + ", with a lerp precentage of: " + tempLerpPercent);
+                //print(name + " rewinded from point: " + currentPointInTimeIndex + ", to point: " + (currentPointInTimeIndex + 1) + ", with a lerp precentage of: " + tempLerpPercent);
             }
             else
             {
