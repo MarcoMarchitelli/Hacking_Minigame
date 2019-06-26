@@ -26,12 +26,12 @@ namespace Rewind
         {
             if (canShoot)
                 timer -= Time.deltaTime;
-            else
-            {
-                timer += Time.deltaTime;
-                if (timer >= timeBetweenEachShot)
-                    timer = 0;
-            }
+            //else
+            //{
+            //    timer += Time.deltaTime;
+            //    if (timer >= timeBetweenEachShot)
+            //        timer = 0;
+            //}
         }
 
         public void Shoot()

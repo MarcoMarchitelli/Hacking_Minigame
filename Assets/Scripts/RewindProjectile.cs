@@ -15,14 +15,34 @@ namespace Rewind
 
         [HideInInspector] public float moveSpeed;
 
-        float timer = 0;
-        bool canMove = true;
-        bool countTime = false;
+        private MeshRenderer meshRenderer;
+        private float timer = 0;
+        private bool canMove = true;
+        private bool countTime = false;
+        private bool _hidden;
+        /// <summary>
+        /// If we move time to BEFORE our spawn or AFTER our lifetime we desappear but not die.
+        /// We die if, on rewind end, we are still hidden. 
+        /// </summary>
+        private bool Hidden
+        {
+            get { return _hidden; }
+            set
+            {
+                if(value != _hidden)
+                {
+                    _hidden = value;
+                    Desappear(!_hidden);
+                }
+            }
+        }
 
         private void Start()
         {
             RewindManager.Instance.OnRewindStart += StopMove;
             RewindManager.Instance.OnRewindEnd += StartMove;
+
+            meshRenderer = GetComponent<MeshRenderer>();
 
             timer = 0;
             countTime = true;
@@ -50,14 +70,19 @@ namespace Rewind
                 else 
                 {
                     float tempLifeTimer = timer - RewindManager.Instance.timer;
-                    if (tempLifeTimer <= 0 || tempLifeTimer >= lifeTime)
-                        Die();
+                    if (!Hidden && tempLifeTimer <= 0 || tempLifeTimer >= lifeTime)
+                        Hidden = true;
+                    else if (Hidden && tempLifeTimer > 0)
+                        Hidden = false;
                 }
             }
         }
 
         private void OnTriggerEnter(Collider other)
         {
+            if (Hidden)
+                return;
+
             if (damageMask == (damageMask | (1 << other.gameObject.layer)))
             {
                 IDamageable d = other.GetComponentInParent<IDamageable>();
@@ -92,6 +117,12 @@ namespace Rewind
         void StopMove()
         {
             canMove = false;
+        }
+
+        private void Desappear(bool _value)
+        {
+            //TODO: add effects or something => maybe sounds.            
+            meshRenderer.enabled = _value;
         }
     }
 }

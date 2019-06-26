@@ -28,11 +28,27 @@ namespace Rewind
 
         #endregion
 
-        Rigidbody rb;
         Material mat;
         Color startingColor;
         bool countTime;
         float timer;
+        private bool _hidden;
+        /// <summary>
+        /// If we move time to BEFORE our spawn or AFTER our lifetime we desappear but not die.
+        /// We die if, on rewind end, we are still hidden. 
+        /// </summary>
+        private bool Hidden
+        {
+            get { return _hidden; }
+            set
+            {
+                if (value != _hidden)
+                {
+                    _hidden = value;
+                    Desappear(!_hidden);
+                }
+            }
+        }
 
         #region Monos
 
@@ -45,7 +61,6 @@ namespace Rewind
                 OnDeath += e.RemoveCount;
             }
 
-            rb = GetComponent<Rigidbody>();
             if (materialRenderer)
             {
                 mat = materialRenderer.material;
@@ -91,10 +106,13 @@ namespace Rewind
             if (countTime)
                 timer += Time.deltaTime;
             else
-                timer -= Time.deltaTime * RewindManager.REWIND_SPEED;
-
-            if (timer <= 0)
-                Destroy(gameObject);
+            {
+                float tempLifeTimer = timer - RewindManager.Instance.timer;
+                if (!Hidden && tempLifeTimer <= 0)
+                    Hidden = true;
+                else if (Hidden && tempLifeTimer > 0)
+                    Hidden = false;
+            }
         }
 
         #endregion
@@ -140,6 +158,12 @@ namespace Rewind
         void StopCounting()
         {
             countTime = false;
+        }
+
+        private void Desappear(bool _value)
+        {
+            //TODO: add effects or something => maybe sounds.            
+            materialRenderer.enabled = _value;
         }
     } 
 }

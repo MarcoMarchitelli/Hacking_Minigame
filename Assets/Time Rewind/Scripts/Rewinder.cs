@@ -84,7 +84,7 @@ namespace Rewind
             }
             else
             {
-                EndRewind();
+                return;
             }
         }
 

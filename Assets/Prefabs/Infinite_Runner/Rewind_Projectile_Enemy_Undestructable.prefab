@@ -59,6 +59,7 @@ MonoBehaviour:
   lifeTime: 3
   particle_Enemy_Hit: {fileID: 0}
   rewinder: {fileID: -5613157458286149153}
+  meshRenderer: {fileID: 6541832284002329087}
   moveSpeed: 0
 --- !u!114 &-5613157458286149153
 MonoBehaviour:

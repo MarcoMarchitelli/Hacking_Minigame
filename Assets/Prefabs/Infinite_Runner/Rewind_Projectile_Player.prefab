@@ -133,6 +133,7 @@ MonoBehaviour:
   particle_Enemy_Hit: {fileID: 7403086830876697191, guid: 49fec206722fe504590262ae1fc5ca5f,
     type: 3}
   rewinder: {fileID: 1044070511519120342}
+  meshRenderer: {fileID: 6541832284002329087}
   moveSpeed: 0
 --- !u!114 &1044070511519120342
 MonoBehaviour:
