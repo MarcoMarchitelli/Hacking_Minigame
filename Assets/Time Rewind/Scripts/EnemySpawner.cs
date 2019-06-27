@@ -11,12 +11,13 @@
         public AnimationCurve difficultyOverTime;
         public float width;
 
-        float timer, currentSpawnTime;
+        private float timer, currentSpawnTime, gameLifeTime;
+        private bool countLifeTime;
 
         private void Start()
         {
             RewindManager.Instance.OnRewindStart += StopSpawning;
-            RewindManager.Instance.OnRewindEnd   += StartSpawning;
+            RewindManager.Instance.OnRewindEnd += StartSpawning;
 
             if (spawnOnStart)
             {
@@ -24,14 +25,22 @@
             }
         }
 
+        private void Update()
+        {
+            if (countLifeTime)
+                gameLifeTime += Time.deltaTime;
+        }
+
         void StartSpawning()
         {
-            currentSpawnTime = Mathf.Lerp(startTime, endTime, difficultyOverTime.Evaluate(Time.time));
+            countLifeTime = true;
+            currentSpawnTime = Mathf.Lerp(startTime, endTime, difficultyOverTime.Evaluate(gameLifeTime));
             StartCoroutine("SpawnRoutine");
         }
 
         void StopSpawning()
         {
+            countLifeTime = false;
             StopCoroutine("SpawnRoutine");
         }
 
@@ -40,7 +49,7 @@
             timer = 0;
             while (timer < currentSpawnTime)
             {
-                currentSpawnTime = Mathf.Lerp(startTime, endTime, difficultyOverTime.Evaluate(Time.time));
+                currentSpawnTime = Mathf.Lerp(startTime, endTime, difficultyOverTime.Evaluate(gameLifeTime));
                 timer += Time.deltaTime;
                 yield return null;
             }

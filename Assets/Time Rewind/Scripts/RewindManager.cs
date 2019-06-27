@@ -12,6 +12,7 @@ namespace Rewind
         public System.Action OnRewindStart, OnRewindEnd;
 
         public static RewindManager Instance;
+        public static float REWIND_COOLDOWN = 10f;
         public static float REWIND_TIME = 5f;
         public static float REWIND_SPEED = 1f;
         /// <summary>
@@ -19,8 +20,6 @@ namespace Rewind
         /// </summary>
         public static int RewindDirection = -1;
 
-        //TODO: make the cooldown actually apply.
-        const float REWIND_COOLDOWN = 10f;
         const float RIGHT_STICK_DEADZONE = .8f;
         const float REWIND_STICK_ANGLE_SPEED_MAX = 5f;
         /// <summary>
