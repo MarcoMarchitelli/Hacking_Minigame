@@ -9,6 +9,7 @@ public class Projectile : MonoBehaviour, IDestructable
 
     [Header("Graphics References")]
     public ParticleSystem particle_Enemy_Hit;
+    public ParticleSystem particle_Wall_Hit;
 
     [HideInInspector] public float moveSpeed;
 
@@ -41,6 +42,12 @@ public class Projectile : MonoBehaviour, IDestructable
             {
                 if (other.gameObject.layer == 9 || other.gameObject.layer == 11)
                     Instantiate(particle_Enemy_Hit.gameObject, transform.position, Quaternion.identity);
+            }
+
+            if (particle_Wall_Hit)
+            {
+                if (other.gameObject.layer == 12)
+                    Instantiate(particle_Wall_Hit.gameObject, transform.position, Quaternion.identity);
             }
 
             Die();

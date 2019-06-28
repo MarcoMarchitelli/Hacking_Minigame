@@ -102,7 +102,8 @@ MonoBehaviour:
   lifeTime: 2
   particle_Enemy_Hit: {fileID: 7403086830876697191, guid: 49fec206722fe504590262ae1fc5ca5f,
     type: 3}
-  rewinder: {fileID: 0}
+  particle_Wall_Hit: {fileID: 171229511251029312, guid: 9127aa2c7a2c23e4a8543b22701cd2a0,
+    type: 3}
   moveSpeed: 0
 --- !u!65 &1034790026
 BoxCollider:
