@@ -27,6 +27,6 @@ Material:
     m_Floats:
     - Vector1_4A48615E: 0.48
     - Vector1_BF8F51E: 0.5
-    - _FillPercent: 0
+    - _FillPercent: 0.62784624
     m_Colors:
     - Color_1F02ED6B: {r: 1, g: 1, b: 1, a: 1}
