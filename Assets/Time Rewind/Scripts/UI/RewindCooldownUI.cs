@@ -31,6 +31,8 @@
             cooldownText.transform.localScale = textDefaultScale * EFFECT_SCALE_MODIFIER;
             cooldownImage.transform.localScale = imageDefaultScale * EFFECT_SCALE_MODIFIER;
             cooldownText.DOFade(0, 0);
+
+            cooldownImage.material.SetFloat("_FillPercent", 0);
         }
 
         private void Update()

@@ -241,10 +241,11 @@ MonoBehaviour:
   projectilePrefab: {fileID: -632294854348210754, guid: ca12739970fbe064ea5ac8df5f1e23bf,
     type: 3}
   shootPoint: {fileID: 8451204139689249796}
-  timeBetweenEachShot: 0.2
+  timeBetweenEachShot: 0.4
   projectileSpeed: 25
   projectileRotation: {x: 0, y: 0, z: 0}
   ShotSource: {fileID: 0}
+  ShotParticle: {fileID: 0}
 --- !u!1 &6679883324764311913
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,10 +292,11 @@ MonoBehaviour:
   projectilePrefab: {fileID: -5954815465280048035, guid: 8edfdc4f532594d41a0d368d409347d1,
     type: 3}
   shootPoint: {fileID: 8451204139689249796}
-  timeBetweenEachShot: 0.2
+  timeBetweenEachShot: 0.4
   projectileSpeed: 25
   projectileRotation: {x: 0, y: 0, z: 0}
   ShotSource: {fileID: 0}
+  ShotParticle: {fileID: 0}
 --- !u!1 &8338077420123487037
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,10 +343,11 @@ MonoBehaviour:
   projectilePrefab: {fileID: -5954815465280048035, guid: 8edfdc4f532594d41a0d368d409347d1,
     type: 3}
   shootPoint: {fileID: 8451204139689249796}
-  timeBetweenEachShot: 0.2
+  timeBetweenEachShot: 0.4
   projectileSpeed: 25
   projectileRotation: {x: 0, y: 0, z: 0}
   ShotSource: {fileID: 0}
+  ShotParticle: {fileID: 0}
 --- !u!1 &8619437124601971868
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,7 +394,8 @@ MonoBehaviour:
   projectilePrefab: {fileID: -632294854348210754, guid: ca12739970fbe064ea5ac8df5f1e23bf,
     type: 3}
   shootPoint: {fileID: 8451204139689249796}
-  timeBetweenEachShot: 0.2
+  timeBetweenEachShot: 0.4
   projectileSpeed: 25
   projectileRotation: {x: 0, y: 0, z: 0}
   ShotSource: {fileID: 0}
+  ShotParticle: {fileID: 0}

@@ -5,6 +5,8 @@
 
     public class EnemySpawner : MonoBehaviour
     {
+        public static int ScoreCount;
+
         public bool spawnOnStart;
         public GameObject[] prefabs;
         public float startTime, endTime;
@@ -18,6 +20,7 @@
         {
             RewindManager.Instance.OnRewindStart += StopSpawning;
             RewindManager.Instance.OnRewindEnd += StartSpawning;
+            ScoreCount = 0;
 
             if (spawnOnStart)
             {
@@ -64,9 +67,15 @@
             int randomIndex = Random.Range(0, prefabs.Length);
             Vector3 randomPos = new Vector3(Random.Range(transform.position.x - width * .5f, transform.position.x + width * .5f), transform.position.y, transform.position.z);
 
-            Instantiate(prefabs[randomIndex], randomPos, transform.rotation);
+            RewindEnemy tempEnemy = Instantiate(prefabs[randomIndex], randomPos, transform.rotation).GetComponent<RewindEnemy>();
+            tempEnemy.OnDeath += UpdateScoreCount;
 
             StartSpawning();
+        }
+
+        private void UpdateScoreCount()
+        {
+            ScoreCount++;
         }
     }
 }

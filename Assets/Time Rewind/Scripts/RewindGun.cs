@@ -12,6 +12,7 @@ namespace Rewind
 
         [Header("References")]
         public AudioSource ShotSource;
+        public ParticleSystem ShotParticle;
 
         float timer = 0;
         bool canShoot = true;
@@ -43,10 +44,12 @@ namespace Rewind
             {
                 RewindProjectile proj = Instantiate(projectilePrefab, shootPoint.position, shootPoint.rotation) as RewindProjectile;
                 proj.moveSpeed = projectileSpeed;
-                proj.transform.rotation = proj.transform.rotation * Quaternion.Euler(projectileRotation);
+                proj.transform.rotation = transform.rotation * Quaternion.Euler(projectileRotation);
                 timer = timeBetweenEachShot;
                 if (ShotSource)
                     ShotSource.Play();
+                if (ShotParticle)
+                    Instantiate(ShotParticle, shootPoint.position - Vector3.forward * 2f, Quaternion.identity);
             }
         }
 

@@ -44,6 +44,12 @@ namespace Rewind
             if (Instance == null)
                 Instance = this;
 
+            RewindPlayer player = FindObjectOfType<RewindPlayer>();
+            if (player)
+            {
+                player.OnDeath += () => canRewind = false;
+            }
+
             canRewind = true;
         }
 

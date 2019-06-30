@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Sphere_Shield
+  m_Name: Sphere_Shield_Menu
   m_Shader: {fileID: -6465566751694194690, guid: 243b9865552a05445a45a92b0771ab9b,
     type: 3}
   m_ShaderKeywords: 
@@ -21,9 +21,9 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
-    - Vector1_6DB65AA0: 0
-    - Vector1_8E94AD05: 60
-    - Vector1_CD82F789: 0.3
+    - Vector1_6DB65AA0: 0.82
+    - Vector1_8E94AD05: 80
+    - Vector1_CD82F789: 0.005
     m_Colors:
-    - Color_4C6EAC55: {r: 0, g: 0, b: 0, a: 0}
-    - Color_BFF3EC8: {r: 0, g: 0, b: 0, a: 0}
+    - Color_4C6EAC55: {r: 1, g: 1, b: 1, a: 0}
+    - Color_BFF3EC8: {r: 1, g: 1, b: 1, a: 0}
