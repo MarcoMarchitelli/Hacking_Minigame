@@ -44,7 +44,7 @@ namespace Rewind
             if (EnemySpawner.ScoreCount > PlayerPrefs.GetInt("HighScore"))
                 PlayerPrefs.SetInt("HighScore", EnemySpawner.ScoreCount);
 
-            menuUI.FadeButtons(true, fadeInTime);
+            menuUI.FadeButtons(true, fadeInTime, () => menuUI.enabled = true);
             deathScreenSequence.Append(deathImage.DOColor(screenColor, fadeInTime));
 
             foreach (TextMeshProUGUI text in deathTexts)

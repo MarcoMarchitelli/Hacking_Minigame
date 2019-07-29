@@ -1182,20 +1182,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2581736930201299551, guid: 8629ba08d7333384c8daff998516962c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8629ba08d7333384c8daff998516962c, type: 3}
---- !u!114 &1280878708 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2581736930201299551, guid: 8629ba08d7333384c8daff998516962c,
+--- !u!1 &1280878708 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2581736930201299521, guid: 8629ba08d7333384c8daff998516962c,
     type: 3}
   m_PrefabInstance: {fileID: 1280878707}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+--- !u!114 &1280878709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1280878708}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3efe26b9a2d89f45abb7c3c8e27ede8, type: 3}
+  m_Script: {fileID: 11500000, guid: 76f8448ecbd7b204598350b89c8fa692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MainMenu: {fileID: 0}
+  ModeMenu: {fileID: 0}
+  MenuBackgrounds: {fileID: 0}
 --- !u!1 &1512643676
 GameObject:
   m_ObjectHideFlags: 0
@@ -1586,7 +1596,7 @@ Transform:
 --- !u!199 &5471282707787838460
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -6470,12 +6480,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1280878708}
+      objectReference: {fileID: 1280878709}
     - target: {fileID: 5761556624904750906, guid: d6ae67d1fdddb144a856c6b309e59ee3,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1280878708}
+      objectReference: {fileID: 1280878709}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6ae67d1fdddb144a856c6b309e59ee3, type: 3}
 --- !u!1001 &7734709054590031485
@@ -6595,7 +6605,7 @@ Transform:
 --- !u!199 &8839149849267628358
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
