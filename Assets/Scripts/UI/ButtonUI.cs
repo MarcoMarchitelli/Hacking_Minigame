@@ -48,7 +48,6 @@ public class ButtonUI : MonoBehaviour
 
     public void Click()
     {
-        button.image.DOColor(Color.cyan, CLICK_ANIMATION_DURATION).SetEase(Ease.OutElastic);
         transform.DOPunchScale(originalScale * CLICK_SCALE_MULTIPLIER, CLICK_ANIMATION_DURATION, 0, .7f);
         transform.DOScale(originalScale * SELECTION_SCALE_MULTIPLIER, CLICK_ANIMATION_DURATION);
         button.onClick.Invoke();

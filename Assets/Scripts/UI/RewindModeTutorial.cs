@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
@@ -8,51 +9,71 @@ public class RewindModeTutorial : MonoBehaviour
 {
     [Header("UI References")]
     public Image backgroundImage;
-    public Image slideImage;
-    public TextMeshProUGUI slideText;
+    public TextMeshProUGUI nextText;
+    public Image AButtonImage;
 
     [Header("Slides")]
-    public TutorialSlide[] tutorialSlides;
+    public GameObject[] tutorialSlides;
 
-    bool readInput;
+    public UnityEvent OnTutorialStart, OnTutorialEnd;
+
     int currentSlideIndex;
-    TutorialSlide currentSlide;
+    GameObject currentSlide;
 
     private void Awake()
     {
-        slideImage.transform.localScale = Vector3.zero;
-        slideText.transform.localScale = Vector3.zero;
+        foreach (GameObject slide in tutorialSlides)
+        {
+            slide.transform.localScale = Vector3.zero;
+        }
+
+        StartTutorial();
     }
 
     public void StartTutorial()
     {
-        backgroundImage.transform.DOScale(1, .7f).SetEase(Ease.OutElastic).onComplete += () => StartCoroutine("TutorialRoutine");
+        OnTutorialStart.Invoke();
+
+        currentSlideIndex = -1;
+
+        Sequence tutorialStartSequence = DOTween.Sequence();
+        tutorialStartSequence.Append(backgroundImage.transform.DOScale(1, .7f).SetEase(Ease.OutElastic));
+        tutorialStartSequence.Insert(.3f, AButtonImage.transform.DOScale(1, .4f).SetEase(Ease.OutElastic));
+        tutorialStartSequence.Insert(.5f, nextText.transform.DOScale(1, .4f).SetEase(Ease.OutElastic));
+        tutorialStartSequence.onComplete += () => StartCoroutine("TutorialRoutine");
     }
 
     IEnumerator TutorialRoutine()
     {
+        currentSlideIndex++;
+        if (currentSlideIndex > tutorialSlides.Length - 1)
+        {
+            EndTutorial();
+            yield break;
+        }
         currentSlide = tutorialSlides[currentSlideIndex];
 
-        slideImage.sprite = currentSlide.sprite;
-        slideText.text    = currentSlide.text;
-
-        Sequence slidePopUp = DOTween.Sequence();
-
-        slidePopUp.Append(slideImage.transform.DOScale(1, .7f).SetEase(Ease.OutElastic));
-        slidePopUp.Append(slideText.transform.DOScale(1, .5f).SetEase(Ease.OutElastic));
+        currentSlide.transform.DOScale(1, .5f).SetEase(Ease.OutElastic);
 
         while (true)
         {
+            if (Input.GetButtonDown("Confirm"))
+            {
+                currentSlide.transform.DOScale(0, .3f).SetEase(Ease.InElastic).onComplete += () => StartCoroutine("TutorialRoutine");
+                yield break;
+            }
 
-            
             yield return null;
         }
     }
 
-    public struct TutorialSlide
+    void EndTutorial()
     {
-        [Multiline]
-        public string text;
-        public Sprite sprite;
+        Sequence tutorialEndSequence = DOTween.Sequence();
+        tutorialEndSequence.Append(nextText.transform.DOScale(0, .4f).SetEase(Ease.InElastic));
+        tutorialEndSequence.Insert(.1f, AButtonImage.transform.DOScale(0, .4f).SetEase(Ease.InElastic));
+        tutorialEndSequence.Insert(.2f, backgroundImage.transform.DOScale(0, .5f).SetEase(Ease.InElastic));
+
+        tutorialEndSequence.onComplete += () => OnTutorialEnd.Invoke();
     }
 }

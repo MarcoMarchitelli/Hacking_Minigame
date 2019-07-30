@@ -32,7 +32,7 @@ namespace Rewind
         }
 
         void Play()
-        {
+        {          
             PlayerPrefs.SetInt("CurrentScore", EnemySpawner.ScoreCount);
 
             if (EnemySpawner.ScoreCount > PlayerPrefs.GetInt("HighScore"))
@@ -49,6 +49,11 @@ namespace Rewind
 
             currentScoreText.text = PlayerPrefs.GetInt("CurrentScore", 0).ToString();
             highScoreText.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
+
+            ////RESET ___________________________________
+            //PlayerPrefs.SetInt("CurrentScore", 0);
+            //PlayerPrefs.SetInt("HighScore", 0);
+            ////_________________________________________
 
             deathScreenSequence.Play();
         }

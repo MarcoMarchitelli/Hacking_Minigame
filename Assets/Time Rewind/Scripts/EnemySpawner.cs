@@ -34,7 +34,7 @@
                 gameLifeTime += Time.deltaTime;
         }
 
-        void StartSpawning()
+        public void StartSpawning()
         {
             countLifeTime = true;
             currentSpawnTime = Mathf.Lerp(startTime, endTime, difficultyOverTime.Evaluate(gameLifeTime));

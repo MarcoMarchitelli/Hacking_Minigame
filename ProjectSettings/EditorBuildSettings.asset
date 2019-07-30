@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Level_1.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/Micromechanic.unity
+    path: Assets/Scenes/Rewind Mode.unity
     guid: 50d31d3a7e9a84e429c8df6b6d7abad3
+  - enabled: 1
+    path: Assets/Scenes/Rewind Mode with Tutorial.unity
+    guid: f24037c01b88ca94d9fc50a1386345f1
   m_configObjects: {}
