@@ -66,8 +66,8 @@ public class MenuManager : MonoBehaviour
 
         currentMenu = ModeMenu;
 
-        currentMenu.FadeButtons(true, MENU_TRANSITION_DURATION);
         currentMenu.SelectFirst();
+        currentMenu.FadeButtons(true, MENU_TRANSITION_DURATION);
         currentMenu.transform.DOMoveX(activeMenuPosition.x, MENU_TRANSITION_DURATION).onComplete += () => currentMenu.enabled = true;
 
         //BACKGROUNDS

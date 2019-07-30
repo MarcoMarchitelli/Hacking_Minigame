@@ -31,12 +31,6 @@ namespace Rewind
             }
         }
 
-        private void Start()
-        {
-            menuUI.enabled = false;
-            menuUI.FadeButtons(false, 0);
-        }
-
         void Play()
         {
             PlayerPrefs.SetInt("CurrentScore", EnemySpawner.ScoreCount);
@@ -45,6 +39,7 @@ namespace Rewind
                 PlayerPrefs.SetInt("HighScore", EnemySpawner.ScoreCount);
 
             menuUI.FadeButtons(true, fadeInTime, () => menuUI.enabled = true);
+            menuUI.SelectFirst();
             deathScreenSequence.Append(deathImage.DOColor(screenColor, fadeInTime));
 
             foreach (TextMeshProUGUI text in deathTexts)
@@ -54,8 +49,6 @@ namespace Rewind
 
             currentScoreText.text = PlayerPrefs.GetInt("CurrentScore", 0).ToString();
             highScoreText.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
-
-            menuUI.enabled = true;
 
             deathScreenSequence.Play();
         }

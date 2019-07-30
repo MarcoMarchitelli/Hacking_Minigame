@@ -13,6 +13,7 @@ public class ButtonUI : MonoBehaviour
 
     Vector3 originalScale;
     Color originalColor;
+    bool selected;
 
     const float SELECTION_SCALE_MULTIPLIER = 1.3f;
     const float CLICK_SCALE_MULTIPLIER = 1.5f;
@@ -34,6 +35,7 @@ public class ButtonUI : MonoBehaviour
         button.image.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0);
         FadeImage(true, .1f);
         transform.DOPunchScale(originalScale * SELECTION_SCALE_MULTIPLIER, SELECTION_ANIMATION_DURATION, 0, .7f);
+        selected = true;
         OnSelection.Invoke();
     }
 
@@ -41,6 +43,7 @@ public class ButtonUI : MonoBehaviour
     {
         FadeImage(false, .1f);
         transform.DOScale(originalScale, SELECTION_ANIMATION_DURATION);
+        selected = false;
     }
 
     public void Click()
@@ -53,7 +56,8 @@ public class ButtonUI : MonoBehaviour
 
     public void FadeAll(bool _fadeValue, float _duration, System.Action _callback = null)
     {
-        button.image.DOFade(_fadeValue == true ? 1 : 0, _duration);
+        if (selected)
+            button.image.DOFade(_fadeValue == true ? 1 : 0, _duration);
         text.DOFade(_fadeValue == true ? 1 : 0, _duration).onComplete += () => _callback?.Invoke();
     }
 

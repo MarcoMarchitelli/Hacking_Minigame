@@ -28,9 +28,6 @@ public class MenuUI : MonoBehaviour
         if (Mathf.Abs(stick) < stickDeadzone && dpad == 0)
             selectable = true;
 
-        if (!selectable)
-            return;
-
         switch (navigationType)
         {
             case NavigationType.Vertical:
@@ -38,24 +35,22 @@ public class MenuUI : MonoBehaviour
                 stick = Input.GetAxisRaw("Left Stick Vertical");
                 dpad = Input.GetAxisRaw("DPAD Vertical");
 
-                if (stick >= stickDeadzone || dpad == 1)
-                    ChangeSelection(1);
-                else if (stick <= -stickDeadzone || dpad == -1)
-                    ChangeSelection(-1);
-
                 break;
             case NavigationType.Horizontal:
 
                 stick = Input.GetAxisRaw("Left Stick Horizontal");
                 dpad = Input.GetAxisRaw("DPAD Horizontal");
 
-                if (stick >= stickDeadzone || dpad == 1)
-                    ChangeSelection(1);
-                else if (stick <= -stickDeadzone || dpad == -1)
-                    ChangeSelection(-1);
-
                 break;
         }
+
+        if (!selectable)
+            return;
+
+        if (stick >= stickDeadzone || dpad == 1)
+            ChangeSelection(1);
+        else if (stick <= -stickDeadzone || dpad == -1)
+            ChangeSelection(-1);
 
         if (Input.GetButtonDown("Confirm"))
             currentlySelectedButton.Click();
@@ -113,7 +108,7 @@ public class MenuUI : MonoBehaviour
     {
         for (int i = 0; i < customButtons.Length; i++)
         {
-            if (i == 0)
+            if (i == 0 && _callback != null)
                 customButtons[i].FadeAll(_fadeValue, _duration, _callback);
             else
                 customButtons[i].FadeAll(_fadeValue, _duration);
