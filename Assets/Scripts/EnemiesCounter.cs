@@ -3,7 +3,15 @@ using UnityEngine.SceneManagement;
 
 public class EnemiesCounter : MonoBehaviour
 {
+    int LEVEL_COUNT;
     int _count = 0;
+
+    private void Awake()
+    {
+        LEVEL_COUNT = 0;
+        _count = 0;
+        DontDestroyOnLoad(this);
+    }
 
     public void AddCount()
     {
@@ -20,11 +28,14 @@ public class EnemiesCounter : MonoBehaviour
     void CheckCount()
     {
         if (_count <= 0)
-            Restart();
+            GoToNextLevel();
     }
 
-    void Restart()
+    void GoToNextLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        _count = 0;
+        LEVEL_COUNT++;
+        //TODO: WIN SCREEN OR SOMETHING =>
+        SceneManager.LoadScene("Level_" + LEVEL_COUNT);
     }
 }

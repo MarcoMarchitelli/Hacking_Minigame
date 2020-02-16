@@ -49,6 +49,9 @@ MonoBehaviour:
   timeBetweenEachShot: 0.2
   projectileSpeed: 25
   projectileRotation: {x: 0, y: 0, z: 0}
+  ShotSource: {fileID: 0}
+  ShotParticle: {fileID: 8381283344954000503, guid: a36eaba616ff079438ad5fd8c02932c0,
+    type: 3}
 --- !u!1 &415106409834771897
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,6 +101,9 @@ MonoBehaviour:
   timeBetweenEachShot: 0.2
   projectileSpeed: 25
   projectileRotation: {x: 0, y: 0, z: 0}
+  ShotSource: {fileID: 0}
+  ShotParticle: {fileID: 8381283344954000503, guid: a36eaba616ff079438ad5fd8c02932c0,
+    type: 3}
 --- !u!1 &2345532405567284938
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,6 +153,9 @@ MonoBehaviour:
   timeBetweenEachShot: 0.2
   projectileSpeed: 25
   projectileRotation: {x: 0, y: 0, z: 0}
+  ShotSource: {fileID: 0}
+  ShotParticle: {fileID: 8381283344954000503, guid: a36eaba616ff079438ad5fd8c02932c0,
+    type: 3}
 --- !u!1 &3082637348752318445
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,6 +205,9 @@ MonoBehaviour:
   timeBetweenEachShot: 0.2
   projectileSpeed: 25
   projectileRotation: {x: 0, y: 0, z: 0}
+  ShotSource: {fileID: 0}
+  ShotParticle: {fileID: 8381283344954000503, guid: a36eaba616ff079438ad5fd8c02932c0,
+    type: 3}
 --- !u!1 &6699463083298585163
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,6 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2afd602a517d2d44a273f9d23ed90c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotateOnStart: 1
   Euler: {x: 0, y: 45, z: 0}
   speed: 2
 --- !u!33 &6699463083298585160

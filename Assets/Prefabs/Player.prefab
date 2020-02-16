@@ -358,6 +358,8 @@ MonoBehaviour:
   projectileSpeed: 55
   projectileRotation: {x: 0, y: 0, z: 45}
   ShotSource: {fileID: 1528871151}
+  ShotParticle: {fileID: 7975055178379770434, guid: f38e774cc7ef35f4d918791ef62732db,
+    type: 3}
 --- !u!54 &7889239421499042860
 Rigidbody:
   m_ObjectHideFlags: 0

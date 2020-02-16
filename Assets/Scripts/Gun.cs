@@ -10,6 +10,7 @@ public class Gun : MonoBehaviour
 
     [Header("References")]
     public AudioSource ShotSource;
+    public ParticleSystem ShotParticle;
 
     float timer = 0;
 
@@ -35,6 +36,8 @@ public class Gun : MonoBehaviour
             timer = timeBetweenEachShot;
             if (ShotSource)
                 ShotSource.Play();
+            if (ShotParticle)
+                Instantiate(ShotParticle, shootPoint.position, Quaternion.identity);
         }
     }
 }

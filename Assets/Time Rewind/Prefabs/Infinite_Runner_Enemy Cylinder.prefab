@@ -245,7 +245,8 @@ MonoBehaviour:
   projectileSpeed: 25
   projectileRotation: {x: 0, y: 0, z: 0}
   ShotSource: {fileID: 0}
-  ShotParticle: {fileID: 0}
+  ShotParticle: {fileID: 8381283344954000503, guid: a36eaba616ff079438ad5fd8c02932c0,
+    type: 3}
 --- !u!1 &6679883324764311913
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,7 +297,8 @@ MonoBehaviour:
   projectileSpeed: 25
   projectileRotation: {x: 0, y: 0, z: 0}
   ShotSource: {fileID: 0}
-  ShotParticle: {fileID: 0}
+  ShotParticle: {fileID: 8381283344954000503, guid: a36eaba616ff079438ad5fd8c02932c0,
+    type: 3}
 --- !u!1 &8338077420123487037
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,7 +349,8 @@ MonoBehaviour:
   projectileSpeed: 25
   projectileRotation: {x: 0, y: 0, z: 0}
   ShotSource: {fileID: 0}
-  ShotParticle: {fileID: 0}
+  ShotParticle: {fileID: 8381283344954000503, guid: a36eaba616ff079438ad5fd8c02932c0,
+    type: 3}
 --- !u!1 &8619437124601971868
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,4 +401,5 @@ MonoBehaviour:
   projectileSpeed: 25
   projectileRotation: {x: 0, y: 0, z: 0}
   ShotSource: {fileID: 0}
-  ShotParticle: {fileID: 0}
+  ShotParticle: {fileID: 8381283344954000503, guid: a36eaba616ff079438ad5fd8c02932c0,
+    type: 3}

@@ -731,7 +731,7 @@ MonoBehaviour:
   fadeOutOnSetup: 0
   disableOnSetup: 0
   navigationType: 0
-  stickDeadzone: 0.75
+  stickDeadzone: 0.7
 --- !u!1 &156021972
 GameObject:
   m_ObjectHideFlags: 0
@@ -1175,11 +1175,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a46dadb50a7a644954813d8c1173a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  autoSelectFirstOne: 0
+  autoSelectFirstOne: 1
   fadeOutOnSetup: 1
   disableOnSetup: 1
   navigationType: 0
-  stickDeadzone: 0.75
+  stickDeadzone: 0.7
 --- !u!4 &423689517 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 6abb7cfe6dcaa1a42bd35ac04857d312,
@@ -1221,7 +1221,7 @@ Transform:
 --- !u!199 &464965437
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -6260,7 +6260,7 @@ MonoBehaviour:
 --- !u!199 &586865747
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -13132,7 +13132,7 @@ MonoBehaviour:
   fadeOutOnSetup: 1
   disableOnSetup: 1
   navigationType: 1
-  stickDeadzone: 0.75
+  stickDeadzone: 0.7
 --- !u!114 &1530335654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15086,6 +15086,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Menu Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 2581736930201299551, guid: 8629ba08d7333384c8daff998516962c,
+        type: 3}
+      propertyPath: mainMenuUI
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2581736930201299551, guid: 8629ba08d7333384c8daff998516962c,
+        type: 3}
+      propertyPath: menuBackgrounds
+      value: 
+      objectReference: {fileID: 1728705850}
+    - target: {fileID: 2581736930201299551, guid: 8629ba08d7333384c8daff998516962c,
+        type: 3}
+      propertyPath: playModesMenuUI
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2581736930201299520, guid: 8629ba08d7333384c8daff998516962c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15140,21 +15155,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2581736930201299551, guid: 8629ba08d7333384c8daff998516962c,
-        type: 3}
-      propertyPath: mainMenuUI
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2581736930201299551, guid: 8629ba08d7333384c8daff998516962c,
-        type: 3}
-      propertyPath: menuBackgrounds
-      value: 
-      objectReference: {fileID: 1728705850}
-    - target: {fileID: 2581736930201299551, guid: 8629ba08d7333384c8daff998516962c,
-        type: 3}
-      propertyPath: playModesMenuUI
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2581736930201299551, guid: 8629ba08d7333384c8daff998516962c, type: 3}
@@ -19862,7 +19862,7 @@ ParticleSystem:
 --- !u!199 &4857659156337662180
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -24672,7 +24672,7 @@ ParticleSystem:
 --- !u!199 &4857659156721222181
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -29482,7 +29482,7 @@ ParticleSystem:
 --- !u!199 &4857659157914025953
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -29665,7 +29665,7 @@ PrefabInstance:
 --- !u!199 &6063815760682775956
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -39167,7 +39167,7 @@ GameObject:
 --- !u!199 &6063815760831950677
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -39430,7 +39430,7 @@ Transform:
 --- !u!199 &7056161818293499924
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
